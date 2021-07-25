@@ -9,16 +9,16 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Base Dependencies
 RUN apt-get update && \
   apt-get install -y \
-    curl \
-    wget \
-    software-properties-common \
-    apt-transport-https \
-    ca-certificates \
-    gnupg \
-    gnupg-agent \
-    unzip \
-    git \
-    jq
+  curl \
+  wget \
+  software-properties-common \
+  apt-transport-https \
+  ca-certificates \
+  gnupg \
+  gnupg-agent \
+  unzip \
+  git \
+  jq
 
 # Full Ubuntu Server
 RUN yes | unminimize
@@ -32,9 +32,15 @@ RUN GO_PKG_VERSION=$(curl -s https://golang.org/dl/ | grep -Po 'go[0-9.]+linux-a
   tar -xvf ${GO_PKG_VERSION}.tar.gz && \
   mv go /usr/local
 
-# Docker
+# Docker Repository
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
   add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
-# Add command to reboot container from inside
-RUN rm /usr/sbin/reboot && echo "pkill -P 1" > /usr/sbin/reboot && chmod +x /usr/sbin/reboot
+# Packages
+RUN apt-get update && \
+  apt-get dist-upgrade -y && \
+  apt-get install -y \
+  containerd.io \
+  docker-ce \
+  docker-ce-cli \
+  docker-compose
