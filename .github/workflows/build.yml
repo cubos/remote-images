@@ -18,8 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Enter directory
-        run: cd ${{ matrix.image }}
-
       - name: Docker Build
         run: docker build .
+        with:
+          working-directory: ${{ matrix.image }}
