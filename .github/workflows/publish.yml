@@ -1,6 +1,7 @@
 name: publish
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "0 15 * * *"
 
@@ -23,9 +24,12 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Define image tag
+        run: date -u +"%Y-%m-%d-%H-%M-%S" > tag
+
       - name: Docker Build
-        run: docker build . --tag ghcr.io/cubos/remote-images-${{ matrix.image }}:$(date -u +"%Y-%m-%d-%H-%M-%S")
+        run: docker build . --tag ghcr.io/cubos/remote-images-${{ matrix.image }}:$(cat ../tag)
         working-directory: ${{ matrix.image }}
 
       - name: Docker Push
-        run: docker push ghcr.io/cubos/remote-images-${{ matrix.image }}:$(date -u +"%Y-%m-%d-%H-%M-%S")
+        run: docker push ghcr.io/cubos/remote-images-${{ matrix.image }}:$(cat tag)
