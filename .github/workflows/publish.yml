@@ -25,8 +25,7 @@ jobs:
 
       - name: Docker Build
         run: docker build . --tag ghcr.io/cubos/remote-images-${{ matrix.image }}:$(date -u +"%Y-%m-%d-%H-%M-%S")
-        with:
-          working-directory: ${{ matrix.image }}
+        working-directory: ${{ matrix.image }}
 
       - name: Docker Push
         run: docker push ghcr.io/cubos/remote-images-${{ matrix.image }}:$(date -u +"%Y-%m-%d-%H-%M-%S")
