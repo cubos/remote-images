@@ -61,7 +61,7 @@ RUN \
 
 # Node.js
 RUN \
-  . /etc/profile.d/nvm.sh \
+  . /etc/profile.d/nvm.sh && \
   nvm install 12 && \
   nvm install 14 && \
   nvm install 16 && \
