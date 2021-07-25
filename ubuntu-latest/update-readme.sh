@@ -9,6 +9,7 @@ TARGET=$(echo -n "<!-- BEGIN GENERATED SECTION: $IMAGE -->
 | Name | Version |
 | ---- | ------- |
 | Docker | $(docker -v | cut -d' ' -f 3 | sed 's/.$//') |
+| Git | $(git --version | cut -d' ' -f 3) |
 | Go | $(go version | cut -d' ' -f 3 | cut -c 3-) |
 | Node.js | $(nvm use 12 >/dev/null && node -v | cut -c 2-)<br>$(nvm use 14 >/dev/null && node -v | cut -c 2-) (default)<br>$(nvm use 16 >/dev/null && node -v | cut -c 2-) |
 | Terraform | $(terraform -v | head -n1 | cut -d'v' -f 2) |
