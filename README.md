@@ -6,6 +6,8 @@ Included software:
 
 <!-- BEGIN GENERATED SECTION: ubuntu-latest -->
 
-replace me
+| Name | Version |
+| ---- | ------- |
+| Go | 1.16.6 |
 
 <!-- END GENERATED SECTION: ubuntu-latest -->

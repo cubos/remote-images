@@ -33,3 +33,11 @@ jobs:
 
       - name: Docker Push
         run: docker push ghcr.io/cubos/remote-images-${{ matrix.image }}:$(cat tag)
+
+      - name: Update README.md
+        run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@example.com
+          ./update-readme.sh
+        working-directory: ${{ matrix.image }}
+
