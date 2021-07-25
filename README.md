@@ -8,6 +8,7 @@ Included software:
 
 | Name | Version |
 | ---- | ------- |
-| Go | 1.16.6 |
+| Go |  |
+| Docker |  |
 
 <!-- END GENERATED SECTION: ubuntu-latest -->
