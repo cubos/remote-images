@@ -34,3 +34,4 @@ UPDATED_PACKAGES=$(
 
 git add ../README.md
 git commit -m "chore: Update $IMAGE: $UPDATED_PACKAGES"
+git push
