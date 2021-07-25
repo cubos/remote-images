@@ -1,0 +1,25 @@
+name: build
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        image:
+          - ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Enter directory
+        run: cd ${{ matrix.image }}
+
+      - name: Docker Build
+        run: docker build .
