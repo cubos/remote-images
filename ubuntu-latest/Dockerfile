@@ -55,7 +55,7 @@ RUN \
   mkdir /opt/nvm && \
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/${VERSION}/install.sh | METHOD=script NVM_DIR=/opt/nvm bash && \
   echo ' \
-  source /opt/nvm/nvm.sh \
+  . /opt/nvm/nvm.sh \
   export NVM_DIR="/opt/nvm" \
   ' > /etc/profile.d/nvm.sh
 
