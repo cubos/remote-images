@@ -1,13 +1,16 @@
 #!/bin/bash
 
+. /etc/profile
+
 IMAGE=ubuntu-latest
 
 TARGET=$(echo -n "<!-- BEGIN GENERATED SECTION: $IMAGE -->
 
 | Name | Version |
 | ---- | ------- |
-| Go | $(/usr/local/go/bin/go version | cut -d' ' -f 3 | cut -c 3-) |
 | Docker | $(docker -v | cut -d' ' -f 3 | sed 's/.$//') |
+| Go | $(go version | cut -d' ' -f 3 | cut -c 3-) |
+| Node.js | $(nvm use 12 >/dev/null && node -v | cut -c 2-)<br>$(nvm use 14 >/dev/null && node -v | cut -c 2-) (default)<br>$(nvm use 16 >/dev/null && node -v | cut -c 2-) |
 | Terraform | $(terraform -v | head -n1 | cut -d'v' -f 2) |
 
 <!-- END GENERATED SECTION: $IMAGE -->" | tr '\n' '\r')
