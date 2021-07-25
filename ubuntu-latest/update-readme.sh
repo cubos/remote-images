@@ -8,6 +8,7 @@ TARGET=$(echo -n "<!-- BEGIN GENERATED SECTION: $IMAGE -->
 | ---- | ------- |
 | Go | $(/usr/local/go/bin/go version | cut -d' ' -f 3 | cut -c 3-) |
 | Docker | $(docker -v | cut -d' ' -f 3 | sed 's/.$//') |
+| Terraform | $(terraform -v | head -n1 | cut -d'v' -f 2) |
 
 <!-- END GENERATED SECTION: $IMAGE -->" | tr '\n' '\r')
 

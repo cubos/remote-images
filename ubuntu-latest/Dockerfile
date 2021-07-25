@@ -36,6 +36,10 @@ RUN GO_PKG_VERSION=$(curl -s https://golang.org/dl/ | grep -Po 'go[0-9.]+linux-a
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
   add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
+# Terraform Repository
+RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - && \
+  apt-add-repository "deb [arch=$(dpkg --print-architecture)] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+
 # Packages
 RUN apt-get update && \
   apt-get dist-upgrade -y && \
@@ -43,4 +47,5 @@ RUN apt-get update && \
   containerd.io \
   docker-ce \
   docker-ce-cli \
-  docker-compose
+  docker-compose \
+  terraform
