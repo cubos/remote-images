@@ -11,6 +11,7 @@ Included software:
 | Name | Version |
 | ---- | ------- |
 | Docker | 20.10.7 |
+| Git | 2.27.0 |
 | Go | 1.16.6 |
 | Node.js | <br> (default)<br> |
 | Terraform | 1.0.3 |
