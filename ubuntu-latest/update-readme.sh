@@ -6,7 +6,7 @@ TARGET=$(echo -n "<!-- BEGIN GENERATED SECTION: $IMAGE -->
 
 | Name | Version |
 | ---- | ------- |
-| Go | $(go version | cut -d' ' -f 3 | cut -c 3-) |
+| Go | $(/usr/local/go/bin/go version | cut -d' ' -f 3 | cut -c 3-) |
 | Docker | $(docker -v | cut -d' ' -f 3 | sed 's/.$//') |
 
 <!-- END GENERATED SECTION: $IMAGE -->" | tr '\n' '\r')
