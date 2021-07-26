@@ -25,9 +25,6 @@ RUN \
 # Full Ubuntu Server
 RUN yes | unminimize
 
-# Enable bash color prompt over SSH
-RUN sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/g' /etc/skel/.bashrc
-
 # Go
 RUN \
   GO_PKG_VERSION=$(curl -s https://golang.org/dl/ | grep -Po 'go[0-9.]+linux-amd64' | head -n1) && \
@@ -72,6 +69,13 @@ RUN \
   nvm install 16 && \
   nvm alias default 14
 
+# Google Cloud SDK
+RUN \
+  echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | \
+  tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
+  curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | \
+  apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+
 # Install APT Packages
 RUN \
   apt-get update && \
@@ -81,4 +85,21 @@ RUN \
   docker-ce \
   docker-ce-cli \
   docker-compose \
+  google-cloud-sdk \
+  google-cloud-sdk-app-engine-go \
+  google-cloud-sdk-app-engine-java \
+  google-cloud-sdk-app-engine-python \
+  google-cloud-sdk-app-engine-python-extras \
+  google-cloud-sdk-bigtable-emulator \
+  google-cloud-sdk-cbt \
+  google-cloud-sdk-cloud-build-local \
+  google-cloud-sdk-datalab \
+  google-cloud-sdk-datastore-emulator \
+  google-cloud-sdk-firestore-emulator \
+  google-cloud-sdk-pubsub-emulator \
+  kubectl \
+  sudo \
   terraform
+
+# Get rid of the "take a quick anonymous survey" message
+RUN gcloud --version
