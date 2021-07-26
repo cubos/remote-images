@@ -11,8 +11,10 @@ Included software:
 | Name | Version |
 | ---- | ------- |
 | Docker | 20.10.7 |
-| Git | 2.27.0 |
+| Git | 2.32.0 |
 | Go | 1.16.6 |
+| Google Cloud SDK | 349.0.0 |
+| kubectl | 1.21.3 |
 | Node.js | 12.22.3<br>14.17.3 (default)<br>16.5.0 |
 | Terraform | 1.0.3 |
 
