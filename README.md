@@ -10,6 +10,7 @@ Included software:
 
 | Name | Version |
 | ---- | ------- |
+| .NET SDK | 2.1.816<br>3.1.411<br>5.0.302 (default) |
 | Docker | 20.10.7 |
 | Git | 2.32.0 |
 | Go | 1.16.6 |
