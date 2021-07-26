@@ -37,7 +37,7 @@ UPDATED_PACKAGES=$(
   sed -e 's/,/, /g'
 )
 
-git config --global user.name github-actions
-git config --global user.email github-actions@example.com
+git config --global user.name ci
+git config --global user.email ci@example.com
 git add ../README.md
-git commit -m "chore: Update $IMAGE: $UPDATED_PACKAGES"
+git commit -m "chore: update $IMAGE: $UPDATED_PACKAGES"
