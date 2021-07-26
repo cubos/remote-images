@@ -28,8 +28,8 @@ RUN yes | unminimize
 # Go
 RUN \
   GO_PKG_VERSION=$(curl -s https://golang.org/dl/ | grep -Po 'go[0-9.]+linux-amd64' | head -n1) && \
-  wget https://dl.google.com/go/${GO_PKG_VERSION}.tar.gz && \
-  tar -xvf ${GO_PKG_VERSION}.tar.gz && \
+  wget -q https://dl.google.com/go/${GO_PKG_VERSION}.tar.gz && \
+  tar -xf ${GO_PKG_VERSION}.tar.gz && \
   rm ${GO_PKG_VERSION}.tar.gz && \
   mv go /opt && \
   echo ' \
