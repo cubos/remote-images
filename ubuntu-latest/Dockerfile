@@ -76,6 +76,11 @@ RUN \
   curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | \
   apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 
+# .NET
+RUN wget https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+  dpkg -i packages-microsoft-prod.deb && \
+  rm packages-microsoft-prod.deb
+
 # Install APT Packages
 RUN \
   apt-get update && \
@@ -85,6 +90,9 @@ RUN \
   docker-ce \
   docker-ce-cli \
   docker-compose \
+  dotnet-sdk-2.1 \
+  dotnet-sdk-3.1 \
+  dotnet-sdk-5.0 \
   google-cloud-sdk \
   google-cloud-sdk-app-engine-go \
   google-cloud-sdk-app-engine-java \

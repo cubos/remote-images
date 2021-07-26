@@ -8,6 +8,7 @@ TARGET=$(echo -n "<!-- BEGIN GENERATED SECTION: $IMAGE -->
 
 | Name | Version |
 | ---- | ------- |
+| .NET SDK | $(dotnet --list-sdks | cut -d' ' -f 1 | tr '\n' ',' | sed 's/,$/\n/' | sed 's/,/<br>/g') (default) |
 | Docker | $(docker -v | cut -d' ' -f 3 | sed 's/.$//') |
 | Git | $(git --version | cut -d' ' -f 3) |
 | Go | $(go version | cut -d' ' -f 3 | cut -c 3-) |
