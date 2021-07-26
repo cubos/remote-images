@@ -2,7 +2,7 @@
 
 ## Ubuntu Latest
 
-Based on Ubuntu 20.10, this image strives for having the latest stable version os the most commonly used software.
+Based on Ubuntu 20.10, this image strives for having the latest stable version of the most commonly used software.
 
 Included software:
 
