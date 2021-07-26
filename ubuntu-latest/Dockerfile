@@ -32,6 +32,7 @@ RUN \
   GO_PKG_VERSION=$(curl -s https://golang.org/dl/ | grep -Po 'go[0-9.]+linux-amd64' | head -n1) && \
   wget https://dl.google.com/go/${GO_PKG_VERSION}.tar.gz && \
   tar -xvf ${GO_PKG_VERSION}.tar.gz && \
+  rm ${GO_PKG_VERSION}.tar.gz && \
   mv go /opt && \
   echo ' \
   export GOROOT="/opt/go" \
@@ -42,7 +43,7 @@ RUN \
 # Docker Repository
 RUN \
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
-  add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  add-apt-repository "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 # Terraform Repository
 RUN \
@@ -55,8 +56,8 @@ RUN \
   mkdir /opt/nvm && \
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/${VERSION}/install.sh | METHOD=script NVM_DIR=/opt/nvm bash && \
   echo ' \
-  . /opt/nvm/nvm.sh \
   export NVM_DIR="/opt/nvm" \
+  . /opt/nvm/nvm.sh \
   ' > /etc/profile.d/nvm.sh
 
 # Node.js
