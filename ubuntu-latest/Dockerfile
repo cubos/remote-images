@@ -35,8 +35,8 @@ RUN \
   rm ${GO_PKG_VERSION}.tar.gz && \
   mv go /opt && \
   echo ' \
-  export GOROOT="/opt/go" \
-  export GOPATH="$HOME/go" \
+  export GOROOT="/opt/go" && \
+  export GOPATH="$HOME/go" && \
   export PATH="$PATH:/opt/go/bin:/$HOME/go/bin" \
   ' > /etc/profile.d/go.sh
 
@@ -56,7 +56,7 @@ RUN \
   mkdir /opt/nvm && \
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/${VERSION}/install.sh | METHOD=script NVM_DIR=/opt/nvm bash && \
   echo ' \
-  export NVM_DIR="/opt/nvm" \
+  export NVM_DIR="/opt/nvm" && \
   . /opt/nvm/nvm.sh \
   ' > /etc/profile.d/nvm.sh
 
