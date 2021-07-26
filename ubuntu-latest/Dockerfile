@@ -7,7 +7,8 @@ LABEL org.opencontainers.image.source="https://github.com/cubos/remote-images"
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Base Dependencies
-RUN apt-get update && \
+RUN \
+  apt-get update && \
   apt-get dist-upgrade -y && \
   apt-get install -y \
   curl \
@@ -40,6 +41,9 @@ RUN \
   export PATH="$PATH:/opt/go/bin:/$HOME/go/bin" \
   ' > /etc/profile.d/go.sh
 
+# Git PPA
+RUN add-apt-repository -y ppa:git-core/ppa
+
 # Docker Repository
 RUN \
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
@@ -69,7 +73,10 @@ RUN \
   nvm alias default 14
 
 # Install APT Packages
-RUN apt-get install -y \
+RUN \
+  apt-get update && \
+  apt-get dist-upgrade -y && \
+  apt-get install -y \
   containerd.io \
   docker-ce \
   docker-ce-cli \
