@@ -106,6 +106,9 @@ RUN \
   google-cloud-sdk-firestore-emulator \
   google-cloud-sdk-pubsub-emulator \
   kubectl \
+  python \
+  python3 \
+  python3-pip \
   sudo \
   terraform
 
