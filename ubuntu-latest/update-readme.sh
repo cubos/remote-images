@@ -10,7 +10,9 @@ TARGET=$(echo -n "<!-- BEGIN GENERATED SECTION: $IMAGE -->
 | Name | Version | Notes |
 | ---- | ------- | ----- |
 | .NET SDK | $(dotnet --list-sdks | cut -d' ' -f 1 | tr '\n' ',' | sed 's/,$/\n/' | sed 's/,/<br>/g') (default) |
+| Dart | $(dart --version 2>&1 | cut -d' ' -f 4) |
 | Docker | $(docker -v | cut -d' ' -f 3 | sed 's/.$//') |
+| Flutter | $(flutter --version | head -n1 | cut -d' ' -f 2) |
 | GCC | $(gcc --version | head -n1 | cut -d' ' -f 4) |
 | Git | $(git --version | cut -d' ' -f 3) |
 | Go | $(go version | cut -d' ' -f 3 | cut -c 3-) |

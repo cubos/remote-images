@@ -20,7 +20,8 @@ RUN \
   gnupg-agent \
   unzip \
   git \
-  jq
+  jq \
+  xz-utils
 
 # Full Ubuntu Server
 RUN yes | unminimize
@@ -80,6 +81,23 @@ RUN \
 RUN wget https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
   dpkg -i packages-microsoft-prod.deb && \
   rm packages-microsoft-prod.deb
+
+# Flutter
+RUN VERSION=$(curl -s https://storage.googleapis.com/flutter_infra/releases/releases_linux.json | jq -r '.releases | map(select(.channel == "stable"))[0].version') && \
+  wget https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_${VERSION}-stable.tar.xz && \
+  tar -xf flutter_linux_${VERSION}-stable.tar.xz && \
+  rm flutter_linux_${VERSION}-stable.tar.xz && \
+  mv flutter /opt && \
+  /opt/flutter/bin/flutter config --machine --no-analytics && \
+  /opt/flutter/bin/flutter precache && \
+  echo ' \
+  export PATH="$PATH:/opt/flutter/bin" \
+  ' > /etc/profile.d/flutter.sh
+
+# Google Chrome (Flutter Web needs it)
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+  apt-get install -y --no-install-recommends ./google-chrome-stable_current_amd64.deb && \
+  rm google-chrome-stable_current_amd64.deb
 
 # Install APT Packages
 RUN \
