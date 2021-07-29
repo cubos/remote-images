@@ -86,6 +86,13 @@ RUN \
   curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | \
   apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 
+# AWS SDK
+RUN \
+  wget https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip && \
+  unzip awscli-exe-linux-x86_64.zip && \
+  ./aws/install && \
+  rm -rf awscli-exe-linux-x86_64.zip aws
+
 # .NET
 RUN wget https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
   dpkg -i packages-microsoft-prod.deb && \
