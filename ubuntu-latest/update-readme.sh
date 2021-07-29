@@ -22,6 +22,8 @@ TARGET=$(echo -n "<!-- BEGIN GENERATED SECTION: $IMAGE -->
 
 <!-- END GENERATED SECTION: $IMAGE -->" | tr '\n' '\r')
 
+echo "$TARGET"
+
 README=$(cat ../README.md)
 
 echo "$README" |
