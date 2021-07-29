@@ -18,6 +18,7 @@ TARGET=$(echo -n "<!-- BEGIN GENERATED SECTION: $IMAGE -->
 | kubectl | $(kubectl version --client -o json | jq -r ".clientVersion.gitVersion" | cut -c 2-) |
 | Node.js | $(nvm use 12 >/dev/null && node -v | cut -c 2-)<br>$(nvm use 14 >/dev/null && node -v | cut -c 2-) (default)<br>$(nvm use 16 >/dev/null && node -v | cut -c 2-) | Select with \`nvm\` |
 | Python | $(python --version 2>&1 | cut -d' ' -f2)<br>$(python3 --version 2>&1 | cut -d' ' -f2) | Use \`python\` or \`python3\` |
+| Rust | $(rustc --version | cut -d' ' -f 2) |
 | Terraform | $(terraform -v | head -n1 | cut -d'v' -f 2) |
 
 <!-- END GENERATED SECTION: $IMAGE -->" | tr '\n' '\r')

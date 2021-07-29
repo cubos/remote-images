@@ -27,7 +27,7 @@ RUN yes | unminimize
 
 # Go
 RUN \
-  GO_PKG_VERSION=$(curl -s https://golang.org/dl/ | grep -Po 'go[0-9.]+linux-amd64' | head -n1) && \
+  GO_PKG_VERSION=$(curl -sSL https://golang.org/dl/ | grep -Po "go[0-9.]+linux-$(dpkg --print-architecture)" | head -n1) && \
   wget -q https://dl.google.com/go/${GO_PKG_VERSION}.tar.gz && \
   tar -xf ${GO_PKG_VERSION}.tar.gz && \
   rm ${GO_PKG_VERSION}.tar.gz && \
@@ -43,17 +43,27 @@ RUN add-apt-repository -y ppa:git-core/ppa
 
 # Docker Repository
 RUN \
-  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
+  curl -sSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
   add-apt-repository "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 # Terraform Repository
 RUN \
-  curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - && \
+  curl -sSL https://apt.releases.hashicorp.com/gpg | apt-key add - && \
   apt-add-repository "deb [arch=$(dpkg --print-architecture)] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+
+RUN \
+  export RUSTUP_HOME="/opt/rustup" && \
+  export CARGO_HOME="/opt/cargo" && \
+  curl -sSL https://sh.rustup.rs | sh -s -- --no-modify-path -y && \
+  echo ' \
+  export RUSTUP_HOME="/opt/rustup" && \
+  export CARGO_HOME="/opt/cargo" && \
+  export PATH="$PATH:/opt/cargo/bin" \
+  ' > /etc/profile.d/rust.sh
 
 # Node Version Manager
 RUN \
-  VERSION=$(curl -sL https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r ".tag_name") && \
+  VERSION=$(curl -sSL https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r ".tag_name") && \
   mkdir /opt/nvm && \
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/${VERSION}/install.sh | METHOD=script NVM_DIR=/opt/nvm bash && \
   echo ' \
