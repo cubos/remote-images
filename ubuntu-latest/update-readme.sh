@@ -11,6 +11,7 @@ TARGET=$(echo -n "<!-- BEGIN GENERATED SECTION: $IMAGE -->
 | ---- | ------- | ----- |
 | .NET SDK | $(dotnet --list-sdks | cut -d' ' -f 1 | tr '\n' ',' | sed 's/,$/\n/' | sed 's/,/<br>/g') (default) |
 | Docker | $(docker -v | cut -d' ' -f 3 | sed 's/.$//') |
+| GCC | $(gcc --version | head -n1 | cut -d' ' -f 4) |
 | Git | $(git --version | cut -d' ' -f 3) |
 | Go | $(go version | cut -d' ' -f 3 | cut -c 3-) |
 | Google Cloud SDK | $(gcloud --version | head -n 1 | cut -d' ' -f 4) |
