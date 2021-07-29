@@ -6,15 +6,16 @@ IMAGE=ubuntu-latest
 
 TARGET=$(echo -n "<!-- BEGIN GENERATED SECTION: $IMAGE -->
 
-| Name | Version |
-| ---- | ------- |
+| Name | Version | Notes |
+| ---- | ------- | ----- |
 | .NET SDK | $(dotnet --list-sdks | cut -d' ' -f 1 | tr '\n' ',' | sed 's/,$/\n/' | sed 's/,/<br>/g') (default) |
 | Docker | $(docker -v | cut -d' ' -f 3 | sed 's/.$//') |
 | Git | $(git --version | cut -d' ' -f 3) |
 | Go | $(go version | cut -d' ' -f 3 | cut -c 3-) |
 | Google Cloud SDK | $(gcloud --version | head -n 1 | cut -d' ' -f 4) |
 | kubectl | $(kubectl version --client -o json | jq -r ".clientVersion.gitVersion" | cut -c 2-) |
-| Node.js | $(nvm use 12 >/dev/null && node -v | cut -c 2-)<br>$(nvm use 14 >/dev/null && node -v | cut -c 2-) (default)<br>$(nvm use 16 >/dev/null && node -v | cut -c 2-) |
+| Node.js | $(nvm use 12 >/dev/null && node -v | cut -c 2-)<br>$(nvm use 14 >/dev/null && node -v | cut -c 2-) (default)<br>$(nvm use 16 >/dev/null && node -v | cut -c 2-) | Select with `nvm` |
+| Python | $(python --version 2>&1 | cut -d' ' -f2)<br>$(python3 --version 2>&1 | cut -d' ' -f2) | Use `python` or `python3` |
 | Terraform | $(terraform -v | head -n1 | cut -d'v' -f 2) |
 
 <!-- END GENERATED SECTION: $IMAGE -->" | tr '\n' '\r')
@@ -43,4 +44,4 @@ UPDATED_PACKAGES=$(
 git config --global user.name ci
 git config --global user.email ci@example.com
 git add ../README.md
-git commit -m "chore: update $IMAGE: $UPDATED_PACKAGES"
+git commit -m "update $IMAGE: $UPDATED_PACKAGES"
