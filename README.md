@@ -18,9 +18,9 @@ Included software:
 | GCC | 10.3.0 |
 | Git | 2.32.0 |
 | Go | 1.16.6 |
-| Google Cloud SDK | 350.0.0 |
+| Google Cloud SDK | 351.0.0 |
 | kubectl | 1.21.3 |
-| Node.js | 12.22.4<br>14.17.4 (default)<br>16.6.0 | Select with `nvm` |
+| Node.js | 12.22.4<br>14.17.4 (default)<br>16.6.1 | Select with `nvm` |
 | Python | 2.7.18<br>3.9.5 | Use `python` or `python3` |
 | Rust | 1.54.0 |
 | Terraform | 1.0.3 |
