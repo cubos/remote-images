@@ -11,9 +11,9 @@ Included software:
 | Name | Version | Notes |
 | ---- | ------- | ----- |
 | .NET SDK | 2.1.816<br>3.1.411<br>5.0.302 (default) |
-| AWS SDK | 2.2.25 |
+| AWS SDK | 2.2.26 |
 | Dart | 2.13.1 |
-| Docker | 20.10.7 |
+| Docker | 20.10.8 |
 | Flutter | 2.2.1 |
 | GCC | 10.3.0 |
 | Git | 2.32.0 |
