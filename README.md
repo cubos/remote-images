@@ -23,6 +23,6 @@ Included software:
 | Node.js | 12.22.4<br>14.17.4 (default)<br>16.6.1 | Select with `nvm` |
 | Python | 2.7.18<br>3.9.5 | Use `python` or `python3` |
 | Rust | 1.54.0 |
-| Terraform | 1.0.3 |
+| Terraform | 1.0.4 |
 
 <!-- END GENERATED SECTION: ubuntu-latest -->
