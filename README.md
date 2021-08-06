@@ -11,13 +11,13 @@ Included software:
 | Name | Version | Notes |
 | ---- | ------- | ----- |
 | .NET SDK | 2.1.816<br>3.1.411<br>5.0.302 (default) |
-| AWS SDK | 2.2.26 |
+| AWS SDK | 2.2.27 |
 | Dart | 2.13.1 |
 | Docker | 20.10.8 |
 | Flutter | 2.2.1 |
 | GCC | 10.3.0 |
 | Git | 2.32.0 |
-| Go | 1.16.6 |
+| Go | 1.16.7 |
 | Google Cloud SDK | 351.0.0 |
 | kubectl | 1.21.3 |
 | Node.js | 12.22.4<br>14.17.4 (default)<br>16.6.1 | Select with `nvm` |
