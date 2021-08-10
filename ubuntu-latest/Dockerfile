@@ -114,6 +114,9 @@ RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
   apt-get install -y --no-install-recommends ./google-chrome-stable_current_amd64.deb && \
   rm google-chrome-stable_current_amd64.deb
 
+# Crystal
+RUN curl -fsSL https://crystal-lang.org/install.sh | bash
+
 # Install APT Packages
 RUN \
   apt-get update && \
