@@ -47,6 +47,12 @@ RUN \
   curl -sSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
   add-apt-repository "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
+# Docker Compose
+RUN \
+  VERSION=$(curl -sSL https://api.github.com/repos/docker/compose/releases/latest | jq -r ".tag_name") && \
+  curl -sSL "https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
+  chmod +x /usr/local/bin/docker-compose
+
 # Terraform Repository
 RUN \
   curl -sSL https://apt.releases.hashicorp.com/gpg | apt-key add - && \
@@ -123,7 +129,6 @@ RUN \
   containerd.io \
   docker-ce \
   docker-ce-cli \
-  docker-compose \
   dotnet-sdk-2.1 \
   dotnet-sdk-3.1 \
   dotnet-sdk-5.0 \
