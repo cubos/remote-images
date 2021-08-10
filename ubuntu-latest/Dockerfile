@@ -52,6 +52,7 @@ RUN \
   curl -sSL https://apt.releases.hashicorp.com/gpg | apt-key add - && \
   apt-add-repository "deb [arch=$(dpkg --print-architecture)] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 
+# Rust
 RUN \
   export RUSTUP_HOME="/opt/rustup" && \
   export CARGO_HOME="/opt/cargo" && \
@@ -62,7 +63,7 @@ RUN \
   export PATH="$PATH:/opt/cargo/bin" \
   ' > /etc/profile.d/rust.sh
 
-# Node Version Manager
+# Node.js
 RUN \
   VERSION=$(curl -sSL https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r ".tag_name") && \
   mkdir /opt/nvm && \
@@ -70,10 +71,7 @@ RUN \
   echo ' \
   export NVM_DIR="/opt/nvm" && \
   . /opt/nvm/nvm.sh \
-  ' > /etc/profile.d/nvm.sh
-
-# Node.js
-RUN \
+  ' > /etc/profile.d/nvm.sh  \
   . /etc/profile.d/nvm.sh && \
   nvm install 12 && \
   nvm install 14 && \
