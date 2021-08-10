@@ -97,6 +97,24 @@ RUN wget https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-p
   dpkg -i packages-microsoft-prod.deb && \
   rm packages-microsoft-prod.deb
 
+# LLVM and Clang
+RUN VERSION=12 && \
+  wget https://apt.llvm.org/llvm.sh && \
+  chmod +x llvm.sh && \
+  ./llvm.sh ${VERSION} && \
+  rm llvm.sh && \
+  apt-get install -y \
+  clang-${VERSION} \
+  lldb-${VERSION} \
+  libc++-${VERSION}-dev \
+  libc++abi-${VERSION}-dev \
+  clang-format-${VERSION} \
+  clang-tools-${VERSION} && \
+  update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-${VERSION} 100 && \
+  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${VERSION} 100 && \
+  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${VERSION} 100 && \
+  update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-${VERSION} 100
+
 # Flutter
 RUN VERSION=$(curl -s https://storage.googleapis.com/flutter_infra/releases/releases_linux.json | jq -r '.releases | map(select(.channel == "stable"))[0].version') && \
   wget https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_${VERSION}-stable.tar.xz && \
