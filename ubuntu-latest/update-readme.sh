@@ -11,6 +11,7 @@ TARGET=$(echo -n "<!-- BEGIN GENERATED SECTION: $IMAGE -->
 | ---- | ------- | ----- |
 | .NET SDK | $(dotnet --list-sdks | cut -d' ' -f 1 | tr '\n' ',' | sed 's/,$/\n/' | sed 's/,/<br>/g') (default) |
 | AWS SDK | $(aws --version | cut -d' ' -f 1 | cut -d'/' -f 2) |
+| Crystal | $(crystal -v | head -n1 | cut -d' ' -f 2) |
 | Dart | $(dart --version 2>&1 | cut -d' ' -f 4) |
 | Docker | $(docker -v | cut -d' ' -f 3 | sed 's/.$//') |
 | Docker Compose | $(docker-compose -v | cut -d' ' -f 3 | sed 's/.$//') |
