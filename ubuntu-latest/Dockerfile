@@ -129,7 +129,6 @@ RUN \
   containerd.io \
   docker-ce \
   docker-ce-cli \
-  docker-compose \
   dotnet-sdk-2.1 \
   dotnet-sdk-3.1 \
   dotnet-sdk-5.0 \
