@@ -43,7 +43,7 @@ RUN \
 RUN add-apt-repository -y ppa:git-core/ppa
 
 # Python PPA
-RUN add-apt-repository -y ppa:deadsnakes/ppa
+RUN add-apt-repository -y "deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal main"
 
 # Docker Repository
 RUN \
@@ -96,8 +96,8 @@ RUN \
 
 # AWS SDK
 RUN \
-  wget https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip && \
-  unzip awscli-exe-linux-x86_64.zip && \
+  wget -q https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip && \
+  unzip -q awscli-exe-linux-x86_64.zip && \
   ./aws/install && \
   rm -rf awscli-exe-linux-x86_64.zip aws
 
@@ -105,13 +105,13 @@ RUN \
 RUN curl -sL https://aka.ms/vsls-linux-prereq-script | bash -
 
 # .NET
-RUN wget https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+RUN wget -q https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
   dpkg -i packages-microsoft-prod.deb && \
   rm packages-microsoft-prod.deb
 
 # LLVM and Clang
 RUN VERSION=12 && \
-  wget https://apt.llvm.org/llvm.sh && \
+  wget -q https://apt.llvm.org/llvm.sh && \
   chmod +x llvm.sh && \
   ./llvm.sh ${VERSION} && \
   rm llvm.sh && \
@@ -129,7 +129,7 @@ RUN VERSION=12 && \
 
 # Flutter
 RUN VERSION=$(curl -s https://storage.googleapis.com/flutter_infra/releases/releases_linux.json | jq -r '.releases | map(select(.channel == "stable"))[0].version') && \
-  wget https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_${VERSION}-stable.tar.xz && \
+  wget -q https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_${VERSION}-stable.tar.xz && \
   tar -xf flutter_linux_${VERSION}-stable.tar.xz && \
   rm flutter_linux_${VERSION}-stable.tar.xz && \
   mv flutter /opt && \
@@ -140,7 +140,7 @@ RUN VERSION=$(curl -s https://storage.googleapis.com/flutter_infra/releases/rele
   ' > /etc/profile.d/flutter.sh
 
 # Google Chrome (Flutter Web needs it)
-RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
   apt-get install -y --no-install-recommends ./google-chrome-stable_current_amd64.deb && \
   rm google-chrome-stable_current_amd64.deb
 
