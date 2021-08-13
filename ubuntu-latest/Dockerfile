@@ -47,6 +47,12 @@ RUN \
   curl -sSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
   add-apt-repository "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
+# Docker Compose
+RUN \
+  VERSION=$(curl -sSL https://api.github.com/repos/docker/compose/releases/latest | jq -r ".tag_name") && \
+  curl -sSL "https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
+  chmod +x /usr/local/bin/docker-compose
+
 # Terraform Repository
 RUN \
   curl -sSL https://apt.releases.hashicorp.com/gpg | apt-key add - && \
@@ -63,7 +69,7 @@ RUN \
   export PATH="$PATH:/opt/cargo/bin" \
   ' > /etc/profile.d/rust.sh
 
-# Node.js (Node Package Manager)
+# Node.js
 RUN \
   VERSION=$(curl -sSL https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r ".tag_name") && \
   mkdir /opt/nvm && \
@@ -71,10 +77,7 @@ RUN \
   echo ' \
   export NVM_DIR="/opt/nvm" && \
   . /opt/nvm/nvm.sh \
-  ' > /etc/profile.d/nvm.sh
-
-# Node.js
-RUN \
+  ' > /etc/profile.d/nvm.sh && \
   . /etc/profile.d/nvm.sh && \
   nvm install 12 && \
   nvm install 14 && \
@@ -94,6 +97,9 @@ RUN \
   unzip awscli-exe-linux-x86_64.zip && \
   ./aws/install && \
   rm -rf awscli-exe-linux-x86_64.zip aws
+
+# VSCode LiveShare libs
+RUN curl -sL https://aka.ms/vsls-linux-prereq-script | bash -
 
 # .NET
 RUN wget https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
@@ -135,6 +141,9 @@ RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
   apt-get install -y --no-install-recommends ./google-chrome-stable_current_amd64.deb && \
   rm google-chrome-stable_current_amd64.deb
 
+# Crystal
+RUN curl -fsSL https://crystal-lang.org/install.sh | bash
+
 # Install APT Packages
 RUN \
   apt-get update && \
@@ -144,7 +153,6 @@ RUN \
   containerd.io \
   docker-ce \
   docker-ce-cli \
-  docker-compose \
   dotnet-sdk-2.1 \
   dotnet-sdk-3.1 \
   dotnet-sdk-5.0 \
