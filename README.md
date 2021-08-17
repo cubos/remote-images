@@ -18,8 +18,8 @@ Included software:
 | Docker Compose | 1.29.2 |
 | Flutter | 2.2.1 |
 | GCC | 10.3.0 |
-| Git | 2.32.0 |
-| Go | 1.16.7 |
+| Git | 2.33.0 |
+| Go | 1.17 |
 | Google Cloud SDK | 352.0.0 |
 | kubectl | 1.22.0 |
 | Node.js | 12.22.5<br>14.17.5 (default)<br>16.6.2 | Select with `nvm` |
