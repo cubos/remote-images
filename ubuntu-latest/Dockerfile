@@ -18,6 +18,7 @@ RUN \
   ca-certificates \
   gnupg \
   gnupg-agent \
+  openssh-server \
   unzip \
   git \
   jq \
