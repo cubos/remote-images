@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-. /etc/profile
-
 IMAGE=fedora
 
 TARGET=$(echo -n "<!-- BEGIN GENERATED SECTION: $IMAGE -->
@@ -10,6 +8,7 @@ TARGET=$(echo -n "<!-- BEGIN GENERATED SECTION: $IMAGE -->
 | Name | Version | Notes |
 | ---- | ------- | ----- |
 | Docker | $(docker -v | cut -d' ' -f 3 | sed 's/.$//') |
+| Git | $(git --version | cut -d' ' -f 3) |
 
 <!-- END GENERATED SECTION: $IMAGE -->" | tr '\n' '\r')
 

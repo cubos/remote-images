@@ -15,4 +15,5 @@ RUN \
 # Install packages
 RUN \
   dnf install -y \
-  docker-ce
+  docker-ce \
+  git
