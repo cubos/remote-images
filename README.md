@@ -2,7 +2,7 @@
 
 ## Ubuntu
 
-Based on Ubuntu 21.04, this image strives for having the latest stable version of the most commonly used software.
+Based on Ubuntu 21.04, this image strives for having the latest stable version of the most commonly used software. It's the most widespread Linux distribution for end-users and tend to be easy to use.
 
 <!-- BEGIN GENERATED SECTION: ubuntu -->
 
@@ -26,3 +26,14 @@ Based on Ubuntu 21.04, this image strives for having the latest stable version o
 | Terraform        | 1.0.5                                   |
 
 <!-- END GENERATED SECTION: ubuntu -->
+
+## Fedora
+
+Based on Fedora 34, this image strives for having the latest stable version of the most commonly used software. It's sponsored by [Red Hat](https://www.redhat.com/) and has many similarities to RHEL.
+
+<!-- BEGIN GENERATED SECTION: fedora -->
+
+| Name             | Version                                 | Notes                     |
+| ---------------- | --------------------------------------- | ------------------------- |
+
+<!-- END GENERATED SECTION: fedora -->

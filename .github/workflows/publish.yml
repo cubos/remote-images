@@ -13,6 +13,7 @@ jobs:
       matrix:
         image:
           - ubuntu
+          - fedora
 
     steps:
       - uses: actions/checkout@v2
