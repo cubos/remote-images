@@ -3,7 +3,7 @@ set -e
 
 . /etc/profile
 
-IMAGE=ubuntu-latest
+IMAGE=ubuntu
 
 TARGET=$(echo -n "<!-- BEGIN GENERATED SECTION: $IMAGE -->
 
