@@ -9,7 +9,7 @@ Based on Ubuntu 21.04, this image strives for having the latest stable version o
 | Name | Version | Notes |
 | ---- | ------- | ----- |
 | .NET SDK | 2.1.818<br>3.1.412<br>5.0.400 (default) |
-| AWS SDK | 2.2.35 |
+| AWS SDK | 2.2.36 |
 | Crystal | 1.1.1 |
 | Dart | 2.13.1 |
 | Docker | 20.10.8 |
@@ -18,7 +18,7 @@ Based on Ubuntu 21.04, this image strives for having the latest stable version o
 | GCC | 10.3.0 |
 | Git | 2.33.0 |
 | Go | 1.17 |
-| Google Cloud SDK | 355.0.0 |
+| Google Cloud SDK | 356.0.0 |
 | kubectl | 1.22.1 |
 | Node.js | 12.22.6<br>14.17.6 (default)<br>16.9.0 | Select with `nvm` |
 | Python | 2.7.18<br>3.9.5 | Use `python` or `python3` |
