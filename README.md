@@ -21,8 +21,10 @@ Based on Ubuntu 21.04, this image strives for having the latest stable version o
 | Google Cloud SDK | 356.0.0 |
 | kubectl | 1.22.1 |
 | Node.js | 12.22.6<br>14.17.6 (default)<br>16.9.0 | Select with `nvm` |
+| PHP | 7.4.16 |
 | Python | 2.7.18<br>3.9.5 | Use `python` or `python3` |
-| Rust | 1.54.0 |
+| Ruby |  |
+| Rust | 1.55.0 |
 | Terraform | 1.0.6 |
 
 <!-- END GENERATED SECTION: ubuntu -->
