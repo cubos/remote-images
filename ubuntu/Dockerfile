@@ -134,6 +134,7 @@ RUN \
   apt-get install -y \
   build-essential \
   containerd.io \
+  dnsutils \
   docker-ce \
   docker-ce-cli \
   dotnet-sdk-2.1 \
@@ -151,12 +152,28 @@ RUN \
   google-cloud-sdk-datastore-emulator \
   google-cloud-sdk-firestore-emulator \
   google-cloud-sdk-pubsub-emulator \
+  intltool \
+  iputils-ping \
   kubectl \
+  lsof \
+  lzip \
+  man \
+  mono-devel \
+  moreutils \
+  nano \
+  net-tools \
+  p7zip-full \
+  perl \
+  php-cli \
   python \
   python3 \
   python3-pip \
+  rsync \
   sudo \
-  terraform
+  terraform \
+  vim \
+  wabt \
+  xz-utils
 
 # Get rid of the "take a quick anonymous survey" message
 RUN gcloud --version
