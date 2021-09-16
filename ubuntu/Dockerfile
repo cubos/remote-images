@@ -169,11 +169,16 @@ RUN \
   python3 \
   python3-pip \
   rsync \
+  ruby \
   sudo \
   terraform \
   vim \
   wabt \
   xz-utils
+
+# Update gems
+RUN \
+  gem update && gem cleanup
 
 # Get rid of the "take a quick anonymous survey" message
 RUN gcloud --version
