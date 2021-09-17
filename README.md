@@ -9,7 +9,7 @@ Based on Ubuntu 21.04, this image strives for having the latest stable version o
 | Name | Version | Notes |
 | ---- | ------- | ----- |
 | .NET SDK | 2.1.818<br>3.1.413<br>5.0.401 (default) |
-| AWS SDK | 2.2.38 |
+| AWS SDK | 2.2.39 |
 | Crystal | 1.1.1 |
 | Dart | 2.13.1 |
 | Docker | 20.10.8 |
@@ -23,7 +23,7 @@ Based on Ubuntu 21.04, this image strives for having the latest stable version o
 | Node.js | 12.22.6<br>14.17.6 (default)<br>16.9.1 | Select with `nvm` |
 | PHP | 7.4.16 |
 | Python | 2.7.18<br>3.9.5 | Use `python` or `python3` |
-| Ruby |  |
+| Ruby | 2.7.2p137 |
 | Rust | 1.55.0 |
 | Terraform | 1.0.7 |
 
