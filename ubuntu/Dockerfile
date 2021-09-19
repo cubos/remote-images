@@ -68,7 +68,11 @@ RUN \
   export RUSTUP_HOME="/opt/rustup" && \
   export CARGO_HOME="/opt/cargo" && \
   export PATH="$PATH:/opt/cargo/bin" \
-  ' > /etc/profile.d/rust.sh
+  ' > /etc/profile.d/rust.sh && \
+  . /etc/profile.d/rust.sh \
+  rustup component add rust-analysis --toolchain stable-x86_64-unknown-linux-gnu && \
+  rustup component add rust-src --toolchain stable-x86_64-unknown-linux-gnu && \
+  rustup component add rls --toolchain stable-x86_64-unknown-linux-gnu
 
 # Node.js
 RUN \
