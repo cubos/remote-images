@@ -12,7 +12,8 @@ jobs:
     strategy:
       matrix:
         image:
-          - ubuntu-latest
+          - ubuntu
+          - fedora
 
     steps:
       - uses: actions/checkout@v2

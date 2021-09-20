@@ -1,6 +1,6 @@
 FROM ubuntu:21.04
 
-LABEL org.opencontainers.image.title="Ubuntu Latest"
+LABEL org.opencontainers.image.title="Ubuntu"
 LABEL org.opencontainers.image.source="https://github.com/cubos/remote-images"
 
 # Disable dialogs on apt installs
@@ -18,6 +18,7 @@ RUN \
   ca-certificates \
   gnupg \
   gnupg-agent \
+  openssh-server \
   unzip \
   git \
   jq \
@@ -70,7 +71,11 @@ RUN \
   export RUSTUP_HOME="/opt/rustup" && \
   export CARGO_HOME="/opt/cargo" && \
   export PATH="$PATH:/opt/cargo/bin" \
-  ' > /etc/profile.d/rust.sh
+  ' > /etc/profile.d/rust.sh && \
+  . /etc/profile.d/rust.sh \
+  rustup component add rust-analysis --toolchain stable-x86_64-unknown-linux-gnu && \
+  rustup component add rust-src --toolchain stable-x86_64-unknown-linux-gnu && \
+  rustup component add rls --toolchain stable-x86_64-unknown-linux-gnu
 
 # Node.js
 RUN \
@@ -85,6 +90,9 @@ RUN \
   nvm install 12 && \
   nvm install 14 && \
   nvm install 16 && \
+  nvm use 12 && npm i -g npm && \
+  nvm use 14 && npm i -g npm && \
+  nvm use 16 && npm i -g npm && \
   nvm alias default 14
 
 # Google Cloud SDK
@@ -154,6 +162,7 @@ RUN \
   apt-get install -y \
   build-essential \
   containerd.io \
+  dnsutils \
   docker-ce \
   docker-ce-cli \
   dotnet-sdk-2.1 \
@@ -171,12 +180,33 @@ RUN \
   google-cloud-sdk-datastore-emulator \
   google-cloud-sdk-firestore-emulator \
   google-cloud-sdk-pubsub-emulator \
+  intltool \
+  iputils-ping \
   kubectl \
+  lsof \
+  lzip \
+  man \
+  mono-devel \
+  moreutils \
+  nano \
+  net-tools \
+  p7zip-full \
+  perl \
+  php-cli \
   python \
   python3 \
   python3-pip \
+  rsync \
+  ruby \
   sudo \
-  terraform
+  terraform \
+  vim \
+  wabt \
+  xz-utils
+
+# Update gems
+RUN \
+  gem update && gem cleanup
 
 # Get rid of the "take a quick anonymous survey" message
 RUN gcloud --version
