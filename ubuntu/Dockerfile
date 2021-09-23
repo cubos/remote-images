@@ -141,6 +141,7 @@ RUN \
   apt-get install -y \
   build-essential \
   containerd.io \
+  dialog \
   dnsutils \
   docker-ce \
   docker-ce-cli \
@@ -162,6 +163,8 @@ RUN \
   intltool \
   iputils-ping \
   kubectl \
+  language-pack-en \
+  language-pack-pt \
   lsof \
   lzip \
   man \
