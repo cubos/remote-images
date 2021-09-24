@@ -115,8 +115,8 @@ RUN wget https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-p
   rm packages-microsoft-prod.deb
 
 # Flutter
-RUN VERSION=$(curl -s https://storage.googleapis.com/flutter_infra/releases/releases_linux.json | jq -r '.releases | map(select(.channel == "stable"))[0].version') && \
-  wget https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_${VERSION}-stable.tar.xz && \
+RUN VERSION=$(curl -s https://storage.googleapis.com/flutter_infra_release/releases/releases_linux.json | jq -r '.releases | map(select(.channel == "stable"))[0].version') && \
+  wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${VERSION}-stable.tar.xz && \
   tar -xf flutter_linux_${VERSION}-stable.tar.xz && \
   rm flutter_linux_${VERSION}-stable.tar.xz && \
   mv flutter /opt && \
