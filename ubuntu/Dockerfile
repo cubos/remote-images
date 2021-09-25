@@ -49,7 +49,8 @@ RUN \
   go get -v github.com/go-delve/delve/cmd/dlv && \
   go get -v github.com/go-delve/delve/cmd/dlv@master && \
   go get -v honnef.co/go/tools/cmd/staticcheck && \
-  go get -v golang.org/x/tools/gopls
+  go get -v golang.org/x/tools/gopls && \
+  chown -R 1000:1000 /opt/gopath
 
 # Git PPA
 RUN add-apt-repository -y ppa:git-core/ppa
@@ -83,7 +84,9 @@ RUN \
   . /etc/profile.d/rust.sh && \
   rustup component add rust-analysis --toolchain stable-x86_64-unknown-linux-gnu && \
   rustup component add rust-src --toolchain stable-x86_64-unknown-linux-gnu && \
-  rustup component add rls --toolchain stable-x86_64-unknown-linux-gnu
+  rustup component add rls --toolchain stable-x86_64-unknown-linux-gnu && \
+  chown -R 1000:1000 /opt/cargo && \
+  chown -R 1000:1000 /opt/rustup
 
 # Node.js
 RUN \
@@ -101,7 +104,8 @@ RUN \
   nvm use 12 && npm i -g npm && \
   nvm use 14 && npm i -g npm && \
   nvm use 16 && npm i -g npm && \
-  nvm alias default 14
+  nvm alias default 14 && \
+  chown -R 1000:1000 /opt/nvm
 
 # Google Cloud SDK
 RUN \
@@ -135,7 +139,8 @@ RUN VERSION=$(curl -s https://storage.googleapis.com/flutter_infra_release/relea
   /opt/flutter/bin/flutter precache && \
   echo ' \
   export PATH="$PATH:/opt/flutter/bin" \
-  ' > /etc/profile.d/flutter.sh
+  ' > /etc/profile.d/flutter.sh && \
+  chown -R 1000:1000 /opt/flutter
 
 # Google Chrome (Flutter Web needs it)
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
