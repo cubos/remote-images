@@ -181,6 +181,7 @@ RUN \
   kubectl \
   language-pack-en \
   language-pack-pt \
+  libreadline-dev \
   lsof \
   lzip \
   man \
@@ -196,6 +197,8 @@ RUN \
   python3-pip \
   rsync \
   ruby \
+  ruby-dev \
+  strace \
   sudo \
   terraform \
   vim \
