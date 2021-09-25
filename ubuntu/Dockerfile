@@ -39,7 +39,7 @@ RUN \
   export GOPATH="/opt/gopath" && \
   export PATH="$PATH:/opt/go/bin:/opt/gopath/bin" \
   ' > /etc/profile.d/go.sh && \
-  . /etc/profile.d/rust.sh && \
+  . /etc/profile.d/go.sh && \
   go get -v github.com/uudashr/gopkgs/v2/cmd/gopkgs && \
   go get -v github.com/ramya-rao-a/go-outline && \
   go get -v github.com/cweill/gotests/gotests && \
