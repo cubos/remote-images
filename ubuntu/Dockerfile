@@ -36,9 +36,20 @@ RUN \
   mv go /opt && \
   echo ' \
   export GOROOT="/opt/go" && \
-  export GOPATH="$HOME/go" && \
-  export PATH="$PATH:/opt/go/bin:/$HOME/go/bin" \
-  ' > /etc/profile.d/go.sh
+  export GOPATH="/opt/gopath" && \
+  export PATH="$PATH:/opt/go/bin:/opt/gopath/bin" \
+  ' > /etc/profile.d/go.sh && \
+  . /etc/profile.d/go.sh && \
+  go get -v github.com/uudashr/gopkgs/v2/cmd/gopkgs && \
+  go get -v github.com/ramya-rao-a/go-outline && \
+  go get -v github.com/cweill/gotests/gotests && \
+  go get -v github.com/fatih/gomodifytags && \
+  go get -v github.com/josharian/impl && \
+  go get -v github.com/haya14busa/goplay/cmd/goplay && \
+  go get -v github.com/go-delve/delve/cmd/dlv && \
+  go get -v github.com/go-delve/delve/cmd/dlv@master && \
+  go get -v honnef.co/go/tools/cmd/staticcheck && \
+  go get -v golang.org/x/tools/gopls
 
 # Git PPA
 RUN add-apt-repository -y ppa:git-core/ppa
@@ -69,7 +80,7 @@ RUN \
   export CARGO_HOME="/opt/cargo" && \
   export PATH="$PATH:/opt/cargo/bin" \
   ' > /etc/profile.d/rust.sh && \
-  . /etc/profile.d/rust.sh \
+  . /etc/profile.d/rust.sh && \
   rustup component add rust-analysis --toolchain stable-x86_64-unknown-linux-gnu && \
   rustup component add rust-src --toolchain stable-x86_64-unknown-linux-gnu && \
   rustup component add rls --toolchain stable-x86_64-unknown-linux-gnu
