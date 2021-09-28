@@ -13,14 +13,14 @@ Based on Ubuntu 21.04, this image strives for having the latest stable version o
 | Crystal | 1.1.1 |
 | Dart | 2.14.2 |
 | Docker | 20.10.8 |
-| Docker Compose | 1.29.2 |
+| Docker Compose |  |
 | Flutter | 2.5.1 |
 | GCC | 10.3.0 |
 | Git | 2.33.0 |
 | Go | 1.17.1 |
-| Google Cloud SDK | 358.0.0 |
+| Google Cloud SDK | 359.0.0 |
 | kubectl | 1.22.2 |
-| Node.js | 12.22.6<br>14.17.6 (default)<br>16.10.0 | Select with `nvm` |
+| Node.js | 12.22.6<br>14.18.0 (default)<br>16.10.0 | Select with `nvm` |
 | PHP | 7.4.16 |
 | Python | 2.7.18<br>3.9.5 | Use `python` or `python3` |
 | Ruby | 2.7.2p137 |
