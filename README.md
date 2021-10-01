@@ -9,12 +9,12 @@ Based on Ubuntu 21.04, this image strives for having the latest stable version o
 | Name | Version | Notes |
 | ---- | ------- | ----- |
 | .NET SDK | 2.1.818<br>3.1.413<br>5.0.401 (default) |
-| AWS SDK | 2.2.42 |
+| AWS SDK | 2.2.43 |
 | Crystal | 1.1.1 |
-| Dart | 2.14.2 |
+| Dart | 2.14.3 |
 | Docker | 20.10.8 |
 | Docker Compose |  |
-| Flutter | 2.5.1 |
+| Flutter | 2.5.2 |
 | GCC | 10.3.0 |
 | Git | 2.33.0 |
 | Go | 1.17.1 |
