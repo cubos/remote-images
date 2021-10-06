@@ -9,7 +9,7 @@ Based on Ubuntu 21.04, this image strives for having the latest stable version o
 | Name | Version | Notes |
 | ---- | ------- | ----- |
 | .NET SDK | 2.1.818<br>3.1.413<br>5.0.401 (default) |
-| AWS SDK | 2.2.43 |
+| AWS SDK | 2.2.44 |
 | Crystal | 1.1.1 |
 | Dart | 2.14.3 |
 | Docker | 20.10.9 |
