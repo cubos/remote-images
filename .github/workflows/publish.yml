@@ -29,7 +29,7 @@ jobs:
         run: date -u +"%Y-%m-%d-%H-%M-%S" > tag
 
       - name: Docker Build
-        run: docker build . --tag ghcr.io/cubos/remote-images-${{ matrix.image }}:$(cat ../tag)
+        run: docker build . --tag ghcr.io/cubos/remote-images-${{ matrix.image }}:$(cat ../tag)  --pull
         working-directory: ${{ matrix.image }}
 
       - name: Docker Push

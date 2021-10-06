@@ -36,9 +36,21 @@ RUN \
   mv go /opt && \
   echo ' \
   export GOROOT="/opt/go" && \
-  export GOPATH="$HOME/go" && \
-  export PATH="$PATH:/opt/go/bin:/$HOME/go/bin" \
-  ' > /etc/profile.d/go.sh
+  export GOPATH="/opt/gopath" && \
+  export PATH="$PATH:/opt/go/bin:/opt/gopath/bin" \
+  ' > /etc/profile.d/go.sh && \
+  . /etc/profile.d/go.sh && \
+  go get -v github.com/uudashr/gopkgs/v2/cmd/gopkgs && \
+  go get -v github.com/ramya-rao-a/go-outline && \
+  go get -v github.com/cweill/gotests/gotests && \
+  go get -v github.com/fatih/gomodifytags && \
+  go get -v github.com/josharian/impl && \
+  go get -v github.com/haya14busa/goplay/cmd/goplay && \
+  go get -v github.com/go-delve/delve/cmd/dlv && \
+  go get -v github.com/go-delve/delve/cmd/dlv@master && \
+  go get -v honnef.co/go/tools/cmd/staticcheck && \
+  go get -v golang.org/x/tools/gopls && \
+  chown -R 1000:1000 /opt/gopath
 
 # Git PPA
 RUN add-apt-repository -y ppa:git-core/ppa
@@ -54,8 +66,8 @@ RUN \
 # Docker Compose
 RUN \
   VERSION=$(curl -sSL https://api.github.com/repos/docker/compose/releases/latest | jq -r ".tag_name") && \
-  curl -sSL "https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
-  chmod +x /usr/local/bin/docker-compose
+  curl -sSL "https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-linux-amd64" -o /opt/docker-compose && \
+  chmod +x /opt/docker-compose
 
 # Terraform Repository
 RUN \
@@ -72,10 +84,12 @@ RUN \
   export CARGO_HOME="/opt/cargo" && \
   export PATH="$PATH:/opt/cargo/bin" \
   ' > /etc/profile.d/rust.sh && \
-  . /etc/profile.d/rust.sh \
+  . /etc/profile.d/rust.sh && \
   rustup component add rust-analysis --toolchain stable-x86_64-unknown-linux-gnu && \
   rustup component add rust-src --toolchain stable-x86_64-unknown-linux-gnu && \
-  rustup component add rls --toolchain stable-x86_64-unknown-linux-gnu
+  rustup component add rls --toolchain stable-x86_64-unknown-linux-gnu && \
+  chown -R 1000:1000 /opt/cargo && \
+  chown -R 1000:1000 /opt/rustup
 
 # Node.js
 RUN \
@@ -93,7 +107,8 @@ RUN \
   nvm use 12 && npm i -g npm && \
   nvm use 14 && npm i -g npm && \
   nvm use 16 && npm i -g npm && \
-  nvm alias default 14
+  nvm alias default 14 && \
+  chown -R 1000:1000 /opt/nvm
 
 # Google Cloud SDK
 RUN \
@@ -136,8 +151,8 @@ RUN VERSION=12 && \
   update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-${VERSION} 100
 
 # Flutter
-RUN VERSION=$(curl -s https://storage.googleapis.com/flutter_infra/releases/releases_linux.json | jq -r '.releases | map(select(.channel == "stable"))[0].version') && \
-  wget -q https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_${VERSION}-stable.tar.xz && \
+RUN VERSION=$(curl -s https://storage.googleapis.com/flutter_infra_release/releases/releases_linux.json | jq -r '.releases | map(select(.channel == "stable"))[0].version') && \
+  wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${VERSION}-stable.tar.xz && \
   tar -xf flutter_linux_${VERSION}-stable.tar.xz && \
   rm flutter_linux_${VERSION}-stable.tar.xz && \
   mv flutter /opt && \
@@ -145,7 +160,8 @@ RUN VERSION=$(curl -s https://storage.googleapis.com/flutter_infra/releases/rele
   /opt/flutter/bin/flutter precache && \
   echo ' \
   export PATH="$PATH:/opt/flutter/bin" \
-  ' > /etc/profile.d/flutter.sh
+  ' > /etc/profile.d/flutter.sh && \
+  chown -R 1000:1000 /opt/flutter
 
 # Google Chrome (Flutter Web needs it)
 RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
@@ -162,6 +178,7 @@ RUN \
   apt-get install -y \
   build-essential \
   containerd.io \
+  dialog \
   dnsutils \
   docker-ce \
   docker-ce-cli \
@@ -183,6 +200,9 @@ RUN \
   intltool \
   iputils-ping \
   kubectl \
+  language-pack-en \
+  language-pack-pt \
+  libreadline-dev \
   lsof \
   lzip \
   man \
@@ -198,6 +218,8 @@ RUN \
   python3-pip \
   rsync \
   ruby \
+  ruby-dev \
+  strace \
   sudo \
   terraform \
   vim \
@@ -210,3 +232,5 @@ RUN \
 
 # Get rid of the "take a quick anonymous survey" message
 RUN gcloud --version
+
+COPY first-run.sh /opt/first-run.sh
