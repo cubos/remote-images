@@ -2,7 +2,7 @@
 
 ## Ubuntu
 
-Based on Ubuntu 21.04, this image strives for having the latest stable version of the most commonly used software. It's the most widespread Linux distribution for end-users and tend to be easy to use.
+Based on Ubuntu 21.10, this image strives for having the latest stable version of the most commonly used software. It's the most widespread Linux distribution for end-users and tend to be easy to use.
 
 <!-- BEGIN GENERATED SECTION: ubuntu -->
 
