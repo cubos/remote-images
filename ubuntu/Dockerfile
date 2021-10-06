@@ -134,10 +134,6 @@ RUN wget -q https://packages.microsoft.com/config/ubuntu/20.10/packages-microsof
 
 # LLVM and Clang
 RUN VERSION=12 && \
-  wget -q https://apt.llvm.org/llvm.sh && \
-  chmod +x llvm.sh && \
-  ./llvm.sh ${VERSION} && \
-  rm llvm.sh && \
   apt-get install -y \
   clang-${VERSION} \
   lldb-${VERSION} \
