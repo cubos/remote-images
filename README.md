@@ -17,7 +17,7 @@ Based on Ubuntu 21.04, this image strives for having the latest stable version o
 | Flutter | 2.5.2 |
 | GCC | 10.3.0 |
 | Git | 2.33.0 |
-| Go | 1.17.1 |
+| Go | 1.17.2 |
 | Google Cloud SDK | 360.0.0 |
 | kubectl | 1.22.2 |
 | Node.js | 12.22.6<br>14.18.0 (default)<br>16.10.0 | Select with `nvm` |
