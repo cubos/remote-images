@@ -55,9 +55,6 @@ RUN \
 # Git PPA
 RUN add-apt-repository -y ppa:git-core/ppa
 
-# Python PPA
-RUN add-apt-repository -y "deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal main"
-
 # Docker Repository
 RUN \
   curl -sSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
