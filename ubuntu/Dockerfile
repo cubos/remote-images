@@ -116,8 +116,8 @@ RUN \
 
 # AWS SDK
 RUN \
-  wget https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip && \
-  unzip awscli-exe-linux-x86_64.zip && \
+  wget -q https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip && \
+  unzip -q awscli-exe-linux-x86_64.zip && \
   ./aws/install && \
   rm -rf awscli-exe-linux-x86_64.zip aws
 
@@ -125,9 +125,23 @@ RUN \
 RUN curl -sL https://aka.ms/vsls-linux-prereq-script | bash -
 
 # .NET
-RUN wget https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+RUN wget -q https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
   dpkg -i packages-microsoft-prod.deb && \
   rm packages-microsoft-prod.deb
+
+# LLVM and Clang
+RUN VERSION=12 && \
+  apt-get install -y \
+  clang-${VERSION} \
+  lldb-${VERSION} \
+  libc++-${VERSION}-dev \
+  libc++abi-${VERSION}-dev \
+  clang-format-${VERSION} \
+  clang-tools-${VERSION} && \
+  update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-${VERSION} 100 && \
+  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${VERSION} 100 && \
+  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${VERSION} 100 && \
+  update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-${VERSION} 100
 
 # Flutter
 RUN VERSION=$(curl -s https://storage.googleapis.com/flutter_infra_release/releases/releases_linux.json | jq -r '.releases | map(select(.channel == "stable"))[0].version') && \
@@ -143,7 +157,7 @@ RUN VERSION=$(curl -s https://storage.googleapis.com/flutter_infra_release/relea
   chown -R 1000:1000 /opt/flutter
 
 # Google Chrome (Flutter Web needs it)
-RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
   apt-get install -y --no-install-recommends ./google-chrome-stable_current_amd64.deb && \
   rm google-chrome-stable_current_amd64.deb
 
