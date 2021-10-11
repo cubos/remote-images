@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+bash ./first-run.sh
+
 . /etc/profile
 
 IMAGE=ubuntu
@@ -11,11 +13,11 @@ TARGET=$(echo -n "<!-- BEGIN GENERATED SECTION: $IMAGE -->
 | ---- | ------- | ----- |
 | .NET SDK | $(dotnet --list-sdks | cut -d' ' -f 1 | tr '\n' ',' | sed 's/,$/\n/' | sed 's/,/<br>/g') (default) |
 | AWS SDK | $(aws --version | cut -d' ' -f 1 | cut -d'/' -f 2) |
-| Clang / LLVM | $(clang -v 2>&1 | head -n1 | cut -d' ' -f 4 | cut -d- -f 1) |
+| Clang | $(clang -v 2>&1 | head -n1 | cut -d' ' -f 4 | cut -d- -f 1) |
 | Crystal | $(crystal -v | head -n1 | cut -d' ' -f 2) |
 | Dart | $(dart --version 2>&1 | cut -d' ' -f 4) |
 | Docker | $(docker -v | cut -d' ' -f 3 | sed 's/.$//') |
-| Docker Compose | $(docker-compose -v | cut -d' ' -f 3 | sed 's/.$//') |
+| Docker Compose | $(docker compose -v | cut -d' ' -f 3 | sed 's/.$//') |
 | Flutter | $(flutter --version | head -n1 | cut -d' ' -f 2) |
 | GCC | $(gcc --version | head -n1 | cut -d' ' -f 4) |
 | Git | $(git --version | cut -d' ' -f 3) |
@@ -31,14 +33,14 @@ TARGET=$(echo -n "<!-- BEGIN GENERATED SECTION: $IMAGE -->
 
 <!-- END GENERATED SECTION: $IMAGE -->" | tr '\n' '\r')
 
-echo "$TARGET"
+echo "$TARGET" | tr '\r' '\n' | tr '/' '\\/'
 
 README=$(cat ../README.md)
 
 echo "$README" |
-  tr '\n' '\r' |
-  sed -e "s/<!-- BEGIN GENERATED SECTION: $IMAGE -->.*<!-- END GENERATED SECTION: $IMAGE -->/$TARGET/" |
-  tr '\r' '\n' > ../README.md
+tr '\n' '\r' |
+sed -e "s/<!-- BEGIN GENERATED SECTION: $IMAGE -->.*<!-- END GENERATED SECTION: $IMAGE -->/$(echo "$TARGET" | tr '/' '\\\\/')/" |
+tr '\r' '\n' > ../README.md
 
 [ -z "$(git diff ../README.md)" ] && exit
 
