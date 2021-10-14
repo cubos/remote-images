@@ -11,7 +11,7 @@ Based on Ubuntu 21.04, this image strives for having the latest stable version o
 | .NET SDK | 2.1.818<br>3.1.414<br>5.0.402 (default) |
 | AWS SDK | 2.2.45 |
 | Clang | 12.0.0 |
-| Crystal | 1.1.1 |
+| Crystal | 1.2.0 |
 | Dart | 2.14.3 |
 | Docker | 20.10.9 |
 | Docker Compose | 20.10.9 |
@@ -26,7 +26,7 @@ Based on Ubuntu 21.04, this image strives for having the latest stable version o
 | Python | 2.7.18<br>3.9.5 | Use `python` or `python3` |
 | Ruby | 2.7.2p137 |
 | Rust | 1.55.0 |
-| Terraform | 1.0.8 |
+| Terraform | 1.0.9 |
 
 <!-- END GENERATED SECTION: ubuntu -->
 
