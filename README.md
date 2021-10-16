@@ -12,10 +12,10 @@ Based on Ubuntu 21.04, this image strives for having the latest stable version o
 | AWS SDK | 2.2.46 |
 | Clang | 12.0.0 |
 | Crystal | 1.2.0 |
-| Dart | 2.14.3 |
+| Dart | 2.14.4 |
 | Docker | 20.10.9 |
 | Docker Compose | 20.10.9 |
-| Flutter | 2.5.2 |
+| Flutter | 2.5.3 |
 | GCC | 10.3.0 |
 | Git | 2.33.1 |
 | Go | 1.17.2 |
