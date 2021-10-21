@@ -25,7 +25,7 @@ Based on Ubuntu 21.04, this image strives for having the latest stable version o
 | PHP | 7.4.16 |
 | Python | 2.7.18<br>3.9.5 | Use `python` or `python3` |
 | Ruby | 2.7.2p137 |
-| Rust | 1.55.0 |
+| Rust | 1.56.0 |
 | Terraform | 1.0.9 |
 
 <!-- END GENERATED SECTION: ubuntu -->
