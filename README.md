@@ -9,9 +9,9 @@ Based on Ubuntu 21.04, this image strives for having the latest stable version o
 | Name | Version | Notes |
 | ---- | ------- | ----- |
 | .NET SDK | 2.1.818<br>3.1.414<br>5.0.402 (default) |
-| AWS SDK | 2.2.47 |
+| AWS SDK | 2.3.0 |
 | Clang | 12.0.0 |
-| Crystal | 1.2.0 |
+| Crystal | 1.2.1 |
 | Dart | 2.14.4 |
 | Docker | 20.10.9 |
 | Docker Compose | 20.10.9 |
