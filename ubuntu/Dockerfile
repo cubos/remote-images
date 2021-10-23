@@ -101,10 +101,12 @@ RUN \
   nvm install 12 && \
   nvm install 14 && \
   nvm install 16 && \
+  nvm install 17 && \
   nvm use 12 && npm i -g npm && \
   nvm use 14 && npm i -g npm && \
   nvm use 16 && npm i -g npm && \
-  nvm alias default 14 && \
+  nvm use 17 && npm i -g npm && \
+  nvm alias default 16 && \
   chown -R 1000:1000 /opt/nvm
 
 # Google Cloud SDK
