@@ -8,8 +8,8 @@ Based on Ubuntu 21.04, this image strives for having the latest stable version o
 
 | Name | Version | Notes |
 | ---- | ------- | ----- |
-| .NET SDK | 2.1.818<br>3.1.414<br>5.0.402 (default) |
-| AWS SDK | 2.3.3 |
+| .NET SDK | 2.1.818<br>3.1.415<br>5.0.403 (default) |
+| AWS SDK | 2.3.4 |
 | Clang | 12.0.0 |
 | Crystal | 1.2.1 |
 | Dart | 2.14.4 |
@@ -18,7 +18,7 @@ Based on Ubuntu 21.04, this image strives for having the latest stable version o
 | Flutter | 2.5.3 |
 | GCC | 10.3.0 |
 | Git | 2.33.1 |
-| Go | 1.17.2 |
+| Go | 1.17.3 |
 | Google Cloud SDK | 363.0.0 |
 | kubectl | 1.22.3 |
 | Node.js | 12.22.7<br>14.18.1<br>16.13.0 (default)<br>17.0.1 | Select with `nvm` |
