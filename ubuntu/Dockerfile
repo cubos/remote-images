@@ -11,6 +11,7 @@ RUN \
   apt-get update && \
   apt-get dist-upgrade -y && \
   apt-get install -y \
+  build-essential \
   curl \
   wget \
   software-properties-common \
@@ -171,7 +172,6 @@ RUN \
   apt-get update && \
   apt-get dist-upgrade -y && \
   apt-get install -y \
-  build-essential \
   containerd.io \
   dialog \
   dnsutils \
