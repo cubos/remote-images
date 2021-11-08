@@ -8,24 +8,25 @@ Based on Ubuntu 21.10, this image strives for having the latest stable version o
 
 | Name | Version | Notes |
 | ---- | ------- | ----- |
-| .NET SDK | 2.1.818<br>3.1.413<br>5.0.401 (default) |
-| AWS SDK | 2.2.43 |
-| Crystal | 1.1.1 |
-| Dart | 2.14.3 |
-| Docker | 20.10.9 |
-| Docker Compose |  |
-| Flutter | 2.5.2 |
+| .NET SDK | 2.1.818<br>3.1.414<br>5.0.402 (default) |
+| AWS SDK | 2.3.3 |
+| Clang | 12.0.0 |
+| Crystal | 1.2.1 |
+| Dart | 2.14.4 |
+| Docker | 20.10.10 |
+| Docker Compose | 20.10.10 |
+| Flutter | 2.5.3 |
 | GCC | 10.3.0 |
-| Git | 2.33.0 |
-| Go | 1.17.1 |
-| Google Cloud SDK | 360.0.0 |
-| kubectl | 1.22.2 |
-| Node.js | 12.22.6<br>14.18.0 (default)<br>16.10.0 | Select with `nvm` |
+| Git | 2.33.1 |
+| Go | 1.17.2 |
+| Google Cloud SDK | 363.0.0 |
+| kubectl | 1.22.3 |
+| Node.js | 12.22.7<br>14.18.1<br>16.13.0 (default)<br>17.0.1 | Select with `nvm` |
 | PHP | 7.4.16 |
 | Python | 2.7.18<br>3.9.5 | Use `python` or `python3` |
 | Ruby | 2.7.2p137 |
-| Rust | 1.55.0 |
-| Terraform | 1.0.8 |
+| Rust | 1.56.1 |
+| Terraform | 1.0.10 |
 
 <!-- END GENERATED SECTION: ubuntu -->
 
@@ -37,7 +38,7 @@ Based on Fedora 34, this image strives for having the latest stable version of t
 
 | Name | Version | Notes |
 | ---- | ------- | ----- |
-| Docker | 20.10.9 |
+| Docker | 20.10.10 |
 | Git | 2.31.1 |
 
 <!-- END GENERATED SECTION: fedora -->
