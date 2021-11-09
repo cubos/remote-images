@@ -180,6 +180,7 @@ RUN \
   dotnet-sdk-2.1 \
   dotnet-sdk-3.1 \
   dotnet-sdk-5.0 \
+  dotnet-sdk-6.0 \
   google-cloud-sdk \
   google-cloud-sdk-app-engine-go \
   google-cloud-sdk-app-engine-java \
