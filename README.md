@@ -26,7 +26,7 @@ Based on Ubuntu 21.10, this image strives for having the latest stable version o
 | Python | 2.7.18<br>3.9.7 | Use `python` or `python3` |
 | Ruby | 2.7.4p191 |
 | Rust | 1.56.1 |
-| Terraform | 1.0.10 |
+| Terraform | 1.0.11 |
 
 <!-- END GENERATED SECTION: ubuntu -->
 
