@@ -19,8 +19,8 @@ Based on Ubuntu 21.10, this image strives for having the latest stable version o
 | GCC | 11.2.0 |
 | Git | 2.34.0 |
 | Go | 1.17.3 |
-| Google Cloud SDK | 365.0.0 |
-| kubectl | 1.22.3 |
+| Google Cloud SDK | 365.0.1 |
+| kubectl | 1.22.4 |
 | Node.js | 12.22.7<br>14.18.1<br>16.13.0 (default)<br>17.1.0 | Select with `nvm` |
 | PHP | 8.0.8 |
 | Python | 2.7.18<br>3.9.7 | Use `python` or `python3` |
