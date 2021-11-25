@@ -17,7 +17,7 @@ Based on Ubuntu 21.10, this image strives for having the latest stable version o
 | Docker Compose | 20.10.11 |
 | Flutter | 2.5.3 |
 | GCC | 11.2.0 |
-| Git | 2.34.0 |
+| Git | 2.34.1 |
 | Go | 1.17.3 |
 | Google Cloud SDK | 365.0.1 |
 | kubectl | 1.22.4 |
