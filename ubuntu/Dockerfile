@@ -172,6 +172,7 @@ RUN \
   apt-get update && \
   apt-get dist-upgrade -y && \
   apt-get install -y \
+  bash-completion \
   containerd.io \
   dialog \
   dnsutils \
@@ -220,7 +221,8 @@ RUN \
   terraform \
   vim \
   wabt \
-  xz-utils
+  xz-utils \
+  zsh
 
 # Update gems
 RUN \
