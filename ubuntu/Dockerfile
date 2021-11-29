@@ -66,7 +66,7 @@ RUN \
   VERSION=$(curl -sSL https://api.github.com/repos/docker/compose/releases/latest | jq -r ".tag_name") && \
   curl -sSL "https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-linux-amd64" -o /opt/docker-compose && \
   chmod +x /opt/docker-compose && \
-  echo 'docker compose "$@"' > /usr/local/bin/docker-compose && \
+  printf '#!/bin/sh\nexec docker compose "$@"' > /usr/local/bin/docker-compose && \
   chmod +x /usr/local/bin/docker-compose
 
 # Terraform Repository
