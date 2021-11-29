@@ -3,7 +3,7 @@ name: publish
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 15 * * *"
+    - cron: "0 15 */7 * *"
 
 jobs:
   build-and-publish:
