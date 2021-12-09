@@ -12,21 +12,21 @@ Based on Ubuntu 21.10, this image strives for having the latest stable version o
 | AWS SDK | 2.4.5 |
 | Clang | 12.0.1 |
 | Crystal | 1.2.2 |
-| Dart | 2.14.4 |
+| Dart | 2.15.0 |
 | Docker | 20.10.11 |
 | Docker Compose | 20.10.11 |
-| Flutter | 2.5.3 |
+| Flutter | 2.8.0 |
 | GCC | 11.2.0 |
 | Git | 2.34.1 |
-| Go | 1.17.4 |
-| Google Cloud SDK | 365.0.1 |
+| Go | 1.17.5 |
+| Google Cloud SDK | 366.0.0 |
 | kubectl | 1.22.4 |
 | Node.js | 12.22.7<br>14.18.2<br>16.13.1 (default)<br>17.2.0 | Select with `nvm` |
 | PHP | 8.0.8 |
 | Python | 2.7.18<br>3.9.7 | Use `python` or `python3` |
 | Ruby | 2.7.4p191 |
 | Rust | 1.57.0 |
-| Terraform | 1.0.11 |
+| Terraform | 1.1.0 |
 
 <!-- END GENERATED SECTION: ubuntu -->
 
