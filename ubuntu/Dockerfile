@@ -218,6 +218,7 @@ RUN \
   rsync \
   ruby \
   ruby-dev \
+  rsyslog \
   strace \
   sudo \
   terraform \
@@ -225,6 +226,9 @@ RUN \
   wabt \
   xz-utils \
   zsh
+
+# Disable kernel logs on rsyslog
+RUN sed -i -E 's/(module\(load="imklog")/# \1/' /etc/rsyslog.conf
 
 # Update gems
 RUN \
