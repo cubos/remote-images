@@ -9,16 +9,16 @@ Based on Ubuntu 21.10, this image strives for having the latest stable version o
 | Name | Version | Notes |
 | ---- | ------- | ----- |
 | .NET SDK | 2.1.818<br>3.1.416<br>5.0.404<br>6.0.101 (default) |
-| AWS SDK | 2.4.7 |
+| AWS SDK | 2.4.9 |
 | Clang | 12.0.1 |
-| Crystal | 1.2.2 |
+| Crystal | 1.3.0 |
 | Dart | 2.15.1 |
 | Docker | 20.10.12 |
 | Docker Compose | 20.10.12 |
 | Flutter | 2.8.1 |
 | GCC | 11.2.0 |
 | Git | 2.34.1 |
-| Go | 1.17.5 |
+| Go | 1.17.6 |
 | Google Cloud SDK | 367.0.0 |
 | kubectl | 1.23.0 |
 | Node.js | 12.22.8<br>14.18.2<br>16.13.1 (default)<br>17.3.0 | Select with `nvm` |
@@ -26,7 +26,7 @@ Based on Ubuntu 21.10, this image strives for having the latest stable version o
 | Python | 2.7.18<br>3.9.7 | Use `python` or `python3` |
 | Ruby | 2.7.4p191 |
 | Rust | 1.57.0 |
-| Terraform | 1.1.2 |
+| Terraform | 1.1.3 |
 
 <!-- END GENERATED SECTION: ubuntu -->
 
