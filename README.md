@@ -39,6 +39,6 @@ Based on Fedora 34, this image strives for having the latest stable version of t
 | Name | Version | Notes |
 | ---- | ------- | ----- |
 | Docker | 20.10.12 |
-| Git | 2.31.1 |
+| Git | 2.34.1 |
 
 <!-- END GENERATED SECTION: fedora -->
