@@ -217,9 +217,10 @@ RUN \
   python3 \
   python3-pip \
   rsync \
+  rsyslog \
   ruby \
   ruby-dev \
-  rsyslog \
+  sponge \
   strace \
   sudo \
   terraform \
