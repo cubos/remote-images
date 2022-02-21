@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-bash ./first-run.sh
-
 . /etc/profile
 
 IMAGE=ubuntu
