@@ -238,5 +238,3 @@ RUN \
 
 # Get rid of the "take a quick anonymous survey" message
 RUN gcloud --version
-
-COPY first-run.sh /opt/first-run.sh
