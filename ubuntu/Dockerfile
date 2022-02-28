@@ -221,6 +221,7 @@ RUN \
   rsyslog \
   ruby \
   ruby-dev \
+  socat \
   strace \
   sudo \
   terraform \
