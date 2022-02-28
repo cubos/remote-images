@@ -15,7 +15,7 @@ TARGET=$(echo -n "<!-- BEGIN GENERATED SECTION: $IMAGE -->
 | Crystal | $(crystal -v | head -n1 | cut -d' ' -f 2) |
 | Dart | $(dart --version 2>&1 | cut -d' ' -f 4) |
 | Docker | $(docker -v | cut -d' ' -f 3 | sed 's/.$//') |
-| Docker Compose | $(docker compose -v | cut -d' ' -f 3 | sed 's/.$//') |
+| Docker Compose | $(docker compose version | cut -d' ' -f 4 | cut -c 2-) |
 | Flutter | $(flutter --version | head -n1 | cut -d' ' -f 2) |
 | GCC | $(gcc --version | head -n1 | cut -d' ' -f 4) |
 | Git | $(git --version | cut -d' ' -f 3) |
