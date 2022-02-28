@@ -14,51 +14,7 @@ Based on Ubuntu 21.10, this image strives for having the latest stable version o
 | Crystal | 1.3.2 |
 | Dart | 2.16.1 |
 | Docker | 20.10.12 |
-| Docker Compose | 
-docke
-
-
-
-Options
-
-
-
-
-
--f
-
-
-
--p
-
-Commands
-buil
-conver
-c
-creat
-dow
-event
-exe
-image
-kil
-log
-l
-paus
-por
-p
-pul
-pus
-restar
-r
-ru
-star
-sto
-to
-unpaus
-u
-versio
-
-compos |
+| Docker Compose | 2.2.3 |
 | Flutter | 2.10.2 |
 | GCC | 11.2.0 |
 | Git | 2.35.1 |
