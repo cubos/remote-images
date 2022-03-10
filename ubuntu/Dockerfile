@@ -203,7 +203,13 @@ RUN \
   kubectl \
   language-pack-en \
   language-pack-pt \
+  less \
+  libfreetype6 \
   libreadline-dev \
+  libxext6 \
+  libxi6 \
+  libxrender1 \
+  libxtst6 \
   lsof \
   lzip \
   man \
@@ -230,13 +236,7 @@ RUN \
   vim \
   wabt \
   xz-utils \
-  zsh \
-  less \
-  libxext6 \
-  libxrender1 \
-  libxtst6 \
-  libfreetype6 \
-  libxi6
+  zsh
 
 # Disable kernel logs on rsyslog
 RUN sed -i -E 's/(module\(load="imklog")/# \1/' /etc/rsyslog.conf
@@ -253,5 +253,3 @@ RUN python3 -m pip install -U pip
 
 # Install projector
 RUN pip3 install projector-installer
-
-RUN projector --version
