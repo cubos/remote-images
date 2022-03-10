@@ -203,7 +203,13 @@ RUN \
   kubectl \
   language-pack-en \
   language-pack-pt \
+  less \
+  libfreetype6 \
   libreadline-dev \
+  libxext6 \
+  libxi6 \
+  libxrender1 \
+  libxtst6 \
   lsof \
   lzip \
   man \
@@ -217,6 +223,8 @@ RUN \
   python \
   python3 \
   python3-pip \
+  python3-cryptography \
+  python3-netifaces \
   rsync \
   rsyslog \
   ruby \
@@ -239,3 +247,9 @@ RUN \
 
 # Get rid of the "take a quick anonymous survey" message
 RUN gcloud --version
+
+# Update pip
+RUN python3 -m pip install -U pip 
+
+# Install projector
+RUN pip3 install projector-installer
