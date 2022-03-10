@@ -253,5 +253,3 @@ RUN python3 -m pip install -U pip
 
 # Install projector
 RUN pip3 install projector-installer
-
-RUN projector --version
