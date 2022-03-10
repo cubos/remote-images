@@ -217,6 +217,8 @@ RUN \
   python \
   python3 \
   python3-pip \
+  python3-cryptography \
+  python3-netifaces \
   rsync \
   rsyslog \
   ruby \
@@ -228,7 +230,13 @@ RUN \
   vim \
   wabt \
   xz-utils \
-  zsh
+  zsh \
+  less \
+  libxext6 \
+  libxrender1 \
+  libxtst6 \
+  libfreetype6 \
+  libxi6
 
 # Disable kernel logs on rsyslog
 RUN sed -i -E 's/(module\(load="imklog")/# \1/' /etc/rsyslog.conf
@@ -239,3 +247,11 @@ RUN \
 
 # Get rid of the "take a quick anonymous survey" message
 RUN gcloud --version
+
+# Update pip
+RUN python3 -m pip install -U pip 
+
+# Install projector
+RUN pip3 install projector-installer
+
+RUN projector --version
