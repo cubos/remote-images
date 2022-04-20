@@ -22,12 +22,14 @@ TARGET=$(echo -n "<!-- BEGIN GENERATED SECTION: $IMAGE -->
 | Go | $(go version | cut -d' ' -f 3 | cut -c 3-) |
 | Google Cloud SDK | $(gcloud --version | head -n1 | cut -d' ' -f 4) |
 | kubectl | $(kubectl version --client -o json | jq -r ".clientVersion.gitVersion" | cut -c 2-) |
-| Node.js | $(nvm use 12 >/dev/null && node -v | cut -c 2-)<br>$(nvm use 14 >/dev/null && node -v | cut -c 2-)<br>$(nvm use 16 >/dev/null && node -v | cut -c 2-) (default)<br>$(nvm use 17 >/dev/null && node -v | cut -c 2-) | Select with \`nvm\` |
+| Node.js | $(nvm use 12 >/dev/null && node -v | cut -c 2-)<br>$(nvm use 14 >/dev/null && node -v | cut -c 2-)<br>$(nvm use 16 >/dev/null && node -v | cut -c 2-) (default)<br>$(nvm use 17 >/dev/null && node -v | cut -c 2-)<br>$(nvm use 18 >/dev/null && node -v | cut -c 2-) | Select with \`nvm\` |
 | PHP | $(php --version | head -n1 | cut -d' ' -f2) |
 | Python | $(python --version 2>&1 | cut -d' ' -f2)<br>$(python3 --version 2>&1 | cut -d' ' -f2) | Use \`python\` or \`python3\` |
 | Ruby | $(ruby -v | cut -d' ' -f2) |
 | Rust | $(rustc --version | cut -d' ' -f 2) |
 | Terraform | $(terraform -v | head -n1 | cut -d'v' -f 2) |
+| Wasmer | $(wasmer --version |  cut -d' ' -f 2) |
+| Wasmtime | $(wasmtime --version |  cut -d' ' -f 2) |
 
 <!-- END GENERATED SECTION: $IMAGE -->" | tr '\n' '\r')
 
