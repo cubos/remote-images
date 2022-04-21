@@ -12,60 +12,34 @@ RUN \
   apt-get dist-upgrade -y && \
   apt-get install -y \
   build-essential \
-  curl \
-  wget \
-  software-properties-common \
   apt-transport-https \
   ca-certificates \
+  curl \
+  git \
   gnupg \
   gnupg-agent \
-  openssh-server \
-  unzip \
-  git \
   jq \
+  libncurses5 \
+  software-properties-common \
+  unzip \
   xz-utils
 
 # Full Ubuntu Server
 RUN yes | unminimize
 
-# Go
-RUN \
-  GO_PKG_VERSION=$(curl -sSL https://golang.org/dl/ | grep -Po "go[0-9.]+linux-$(dpkg --print-architecture)" | head -n1) && \
-  wget -q https://dl.google.com/go/${GO_PKG_VERSION}.tar.gz && \
-  tar -xf ${GO_PKG_VERSION}.tar.gz && \
-  rm ${GO_PKG_VERSION}.tar.gz && \
-  mv go /opt && \
-  echo ' \
-  export GOROOT="/opt/go" && \
-  export GOPATH="/opt/gopath" && \
-  export PATH="$PATH:/opt/go/bin:/opt/gopath/bin" \
-  ' > /etc/profile.d/go.sh && \
-  . /etc/profile.d/go.sh && \
-  go install -v github.com/uudashr/gopkgs/v2/cmd/gopkgs@latest && \
-  go install -v github.com/ramya-rao-a/go-outline@latest && \
-  go install -v github.com/cweill/gotests/gotests@latest && \
-  go install -v github.com/fatih/gomodifytags@latest && \
-  go install -v github.com/josharian/impl@latest && \
-  go install -v github.com/haya14busa/goplay/cmd/goplay@latest && \
-  go install -v github.com/go-delve/delve/cmd/dlv@latest && \
-  go install -v honnef.co/go/tools/cmd/staticcheck@latest && \
-  go install -v golang.org/x/tools/gopls@latest && \
-  chown -R 1000:1000 /opt/gopath
-
 # Git PPA
 RUN add-apt-repository -y ppa:git-core/ppa
+
+# Go PPA
+RUN add-apt-repository -y ppa:longsleep/golang-backports
 
 # Docker Repository
 RUN \
   curl -sSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
   add-apt-repository "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
-# Docker Compose
+# Docker Compose Switch (compatibility with Docker Compose v1)
 RUN \
-  VERSION=$(curl -sSL https://api.github.com/repos/docker/compose/releases/latest | jq -r ".tag_name") && \
-  mkdir -p /usr/local/lib/docker/cli-plugins && \
-  curl -sSL "https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-linux-x86_64" -o /usr/local/lib/docker/cli-plugins/docker-compose && \
-  chmod +x /usr/local/lib/docker/cli-plugins/docker-compose && \
   VERSION=$(curl -sSL https://api.github.com/repos/docker/compose-switch/releases/latest | jq -r ".tag_name") && \
   curl -sSL "https://github.com/docker/compose-switch/releases/download/${VERSION}/docker-compose-linux-amd64" -o /usr/local/bin/docker-compose && \
   chmod +x /usr/local/bin/docker-compose
@@ -96,7 +70,7 @@ RUN \
 RUN \
   VERSION=$(curl -sSL https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r ".tag_name") && \
   mkdir /opt/nvm && \
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/${VERSION}/install.sh | METHOD=script NVM_DIR=/opt/nvm bash && \
+  curl -sSL https://raw.githubusercontent.com/nvm-sh/nvm/${VERSION}/install.sh | METHOD=script NVM_DIR=/opt/nvm bash && \
   echo ' \
   export NVM_DIR="/opt/nvm" && \
   . /opt/nvm/nvm.sh \
@@ -106,10 +80,12 @@ RUN \
   nvm install 14 && \
   nvm install 16 && \
   nvm install 17 && \
+  nvm install 18 && \
   nvm use 12 && npm i -g npm && \
   nvm use 14 && npm i -g npm && \
   nvm use 16 && npm i -g npm && \
   nvm use 17 && npm i -g npm && \
+  nvm use 18 && npm i -g npm && \
   nvm alias default 16 && \
   chown -R 1000:1000 /opt/nvm
 
@@ -117,41 +93,42 @@ RUN \
 RUN \
   echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | \
   tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
-  curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | \
-  apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+  curl -sSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 
 # AWS SDK
 RUN \
-  wget -q https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip && \
+  curl -sSLO https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip && \
   unzip -q awscli-exe-linux-x86_64.zip && \
   ./aws/install && \
   rm -rf awscli-exe-linux-x86_64.zip aws
 
 # VSCode LiveShare libs
-RUN curl -sL https://aka.ms/vsls-linux-prereq-script | bash -
+RUN curl -sSL https://aka.ms/vsls-linux-prereq-script | bash -
 
 # .NET
-RUN wget -q https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+RUN curl -sSLO https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb && \
   dpkg -i packages-microsoft-prod.deb && \
   rm packages-microsoft-prod.deb
 
 # LLVM and Clang
-RUN VERSION=12 && \
+RUN VERSION=13 && \
   apt-get install -y \
   clang-${VERSION} \
+  lld-${VERSION} \
   lldb-${VERSION} \
   libc++-${VERSION}-dev \
   libc++abi-${VERSION}-dev \
   clang-format-${VERSION} \
   clang-tools-${VERSION} && \
+  update-alternatives --install /usr/bin/lld lld /usr/bin/lld-${VERSION} 100 && \
   update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-${VERSION} 100 && \
   update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${VERSION} 100 && \
   update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${VERSION} 100 && \
   update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-${VERSION} 100
 
 # Flutter
-RUN VERSION=$(curl -s https://storage.googleapis.com/flutter_infra_release/releases/releases_linux.json | jq -r '.releases | map(select(.channel == "stable"))[0].version') && \
-  wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${VERSION}-stable.tar.xz && \
+RUN VERSION=$(curl -sSL https://storage.googleapis.com/flutter_infra_release/releases/releases_linux.json | jq -r '.releases | map(select(.channel == "stable"))[0].version') && \
+  curl -sSLO https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${VERSION}-stable.tar.xz && \
   tar -xf flutter_linux_${VERSION}-stable.tar.xz && \
   rm flutter_linux_${VERSION}-stable.tar.xz && \
   mv flutter /opt && \
@@ -163,12 +140,26 @@ RUN VERSION=$(curl -s https://storage.googleapis.com/flutter_infra_release/relea
   chown -R 1000:1000 /opt/flutter
 
 # Google Chrome (Flutter Web needs it)
-RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
-  apt-get install -y --no-install-recommends ./google-chrome-stable_current_amd64.deb && \
-  rm google-chrome-stable_current_amd64.deb
+RUN curl -sSL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+  echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | \
+  tee -a /etc/apt/sources.list.d/google-chrome.list
 
 # Crystal
-RUN curl -fsSL https://crystal-lang.org/install.sh | bash
+RUN curl -sSL https://crystal-lang.org/install.sh | bash
+
+# Wasmer
+RUN curl https://get.wasmer.io -sSL | WASMER_DIR=/opt/wasmer sh && \
+  echo ' \
+  export WASMER_DIR="/opt/wasmer" && \
+  [ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh" \
+  ' > /etc/profile.d/wasmer.sh
+
+# Wasmtime
+RUN curl https://wasmtime.dev/install.sh -sSL | WASMTIME_HOME=/opt/wasmtime bash && \
+  echo ' \
+  export WASMTIME_HOME="/opt/wasmtime" && \
+  export PATH="$PATH:/opt/wasmtime/bin" \
+  ' > /etc/profile.d/wasmtime.sh
 
 # Install APT Packages
 RUN \
@@ -176,15 +167,19 @@ RUN \
   apt-get dist-upgrade -y && \
   apt-get install -y \
   bash-completion \
+  binaryen \
   containerd.io \
   dialog \
   dnsutils \
   docker-ce \
   docker-ce-cli \
+  docker-compose-plugin \
   dotnet-sdk-2.1 \
   dotnet-sdk-3.1 \
   dotnet-sdk-5.0 \
   dotnet-sdk-6.0 \
+  golang \
+  google-chrome-stable \
   google-cloud-sdk \
   google-cloud-sdk-app-engine-go \
   google-cloud-sdk-app-engine-java \
@@ -197,6 +192,7 @@ RUN \
   google-cloud-sdk-datastore-emulator \
   google-cloud-sdk-firestore-emulator \
   google-cloud-sdk-pubsub-emulator \
+  graphviz \
   intltool \
   iputils-ping \
   kubectl \
@@ -216,24 +212,27 @@ RUN \
   moreutils \
   nano \
   net-tools \
+  openssh-server \
   p7zip-full \
   perl \
   php-cli \
   python \
   python3 \
-  python3-pip \
   python3-cryptography \
   python3-netifaces \
+  python3-pip \
   rsync \
   rsyslog \
   ruby \
   ruby-dev \
+  screen \
   socat \
   strace \
   sudo \
   terraform \
   vim \
   wabt \
+  wget \
   xz-utils \
   zsh
 
@@ -248,7 +247,7 @@ RUN \
 RUN gcloud --version
 
 # Update pip
-RUN python3 -m pip install -U pip 
+RUN python3 -m pip install -U pip
 
 # Install projector
 RUN pip3 install projector-installer
