@@ -38,5 +38,7 @@ jobs:
       - name: Update README.md
         run: |
           git pull
+          chown -R 1000:1000 .
           docker run -v $GITHUB_WORKSPACE:/work --user 1000:1000 ghcr.io/cubos/remote-images-${{ matrix.image }}:$(cat tag) bash -c "cd /work/${{ matrix.image }}; ./update-readme.sh"
+          chown -R root:root .
           git push origin main
