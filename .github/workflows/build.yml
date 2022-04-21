@@ -29,4 +29,4 @@ jobs:
 
       - name: Update README.md (without git push)
         run: |
-          docker run -v $GITHUB_WORKSPACE:/work test-image bash -c "cd /work/${{ matrix.image }}; ./update-readme.sh"
+          docker run -v $GITHUB_WORKSPACE:/work --user 1000:1000 test-image bash -c "cd /work/${{ matrix.image }}; ./update-readme.sh"
