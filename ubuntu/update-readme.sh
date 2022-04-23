@@ -36,7 +36,8 @@ echo -n "<!-- BEGIN GENERATED SECTION: $IMAGE -->
 END
 )
 
-mkdir /home/readmeuser
+mkdir -p /home/readmeuser
+chown 1000:1000 /home/readmeuser
 echo "readmeuser:x:1000:" >> /etc/group
 echo "readmeuser:x:1000:1000:,,,:/home/readmeuser:/bin/bash" >> /etc/passwd
 echo "readmeuser:*:18895:0:99999:7:::" >> /etc/shadow
