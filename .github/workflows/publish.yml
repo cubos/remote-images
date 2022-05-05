@@ -36,6 +36,7 @@ jobs:
         run: docker push ghcr.io/cubos/remote-images-${{ matrix.image }}:$(cat tag)
 
       - name: Update README.md
+        working-directory: ${{ matrix.image }}
         run: |
           git pull
 
