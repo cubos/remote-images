@@ -132,11 +132,12 @@ RUN VERSION=$(curl -sSL https://storage.googleapis.com/flutter_infra_release/rel
   tar -xf flutter_linux_${VERSION}-stable.tar.xz && \
   rm flutter_linux_${VERSION}-stable.tar.xz && \
   mv flutter /opt && \
-  /opt/flutter/bin/flutter config --machine --no-analytics && \
-  /opt/flutter/bin/flutter precache && \
   echo ' \
   export PATH="$PATH:/opt/flutter/bin" \
   ' > /etc/profile.d/flutter.sh && \
+  . /etc/profile.d/flutter.sh && \
+  flutter config --machine --no-analytics && \
+  flutter precache && \
   chown -R 1000:1000 /opt/flutter
 
 # Google Chrome (Flutter Web needs it)
