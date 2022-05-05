@@ -36,16 +36,15 @@ jobs:
         run: docker push ghcr.io/cubos/remote-images-${{ matrix.image }}:$(cat tag)
 
       - name: Update README.md
-        working-directory: ${{ matrix.image }}
         run: |
           git pull
 
           docker run -v $GITHUB_WORKSPACE:/work ghcr.io/cubos/remote-images-${{ matrix.image }}:$(cat tag) bash -c "cd /work/${{ matrix.image }}; ./update-readme.sh"
 
-          [ -z "$(git diff ../README.md)" ] && exit
+          [ -z "$(git diff README.md)" ] && exit
 
           UPDATED_PACKAGES=$(
-            git diff ../README.md |
+            git diff README.md |
             grep "^+|" |
             cut -d'|' -f 2 |
             grep -v -- "----" |
@@ -58,7 +57,7 @@ jobs:
 
           git config --global user.name ci
           git config --global user.email ci@example.com
-          git add ../README.md
+          git add README.md
           git commit -m "update $IMAGE: $UPDATED_PACKAGES"
 
           git push origin main

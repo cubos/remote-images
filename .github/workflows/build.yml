@@ -28,14 +28,13 @@ jobs:
         working-directory: ${{ matrix.image }}
 
       - name: Update README.md (without git push)
-        working-directory: ${{ matrix.image }}
         run: |
           docker run -v $GITHUB_WORKSPACE:/work test-image bash -c "cd /work/${{ matrix.image }}; ./update-readme.sh"
 
-          [ -z "$(git diff ../README.md)" ] && exit
+          [ -z "$(git diff README.md)" ] && exit
 
           UPDATED_PACKAGES=$(
-            git diff ../README.md |
+            git diff README.md |
             grep "^+|" |
             cut -d'|' -f 2 |
             grep -v -- "----" |
@@ -48,6 +47,6 @@ jobs:
 
           git config --global user.name ci
           git config --global user.email ci@example.com
-          git add ../README.md
+          git add README.md
           git commit -m "update $IMAGE: $UPDATED_PACKAGES"
 
