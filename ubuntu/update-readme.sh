@@ -29,8 +29,8 @@ echo -n "<!-- BEGIN GENERATED SECTION: $IMAGE -->
 | Ruby | \$(ruby -v | cut -d' ' -f2) |
 | Rust | \$(rustc --version | cut -d' ' -f 2) |
 | Terraform | \$(terraform -v | head -n1 | cut -d'v' -f 2) |
-| Wasmer | \$(wasmer --version |  cut -d' ' -f 2) |
-| Wasmtime | \$(wasmtime --version |  cut -d' ' -f 2) |
+| Wasmer | \$(wasmer --version | cut -d' ' -f 2) |
+| Wasmtime | \$(wasmtime --version | cut -d' ' -f 2) |
 
 <!-- END GENERATED SECTION: $IMAGE -->" | tr '\n' '\r'
 END
@@ -41,6 +41,7 @@ chown 1000:1000 /home/readmeuser
 echo "readmeuser:x:1000:" >> /etc/group
 echo "readmeuser:x:1000:1000:,,,:/home/readmeuser:/bin/bash" >> /etc/passwd
 echo "readmeuser:*:18895:0:99999:7:::" >> /etc/shadow
+su - readmeuser -c "flutter --version" # Build Flutter tool before anything
 TARGET=$(su - readmeuser -c bash -c "$CMD")
 
 echo "$TARGET" | tr '\r' '\n' | tr '/' '\\/'
@@ -51,22 +52,3 @@ echo "$README" |
 tr '\n' '\r' |
 sed -e "s/<!-- BEGIN GENERATED SECTION: $IMAGE -->.*<!-- END GENERATED SECTION: $IMAGE -->/$(echo "$TARGET" | tr '/' '\\\\/')/" |
 tr '\r' '\n' > ../README.md
-
-[ -z "$(git diff ../README.md)" ] && exit
-
-UPDATED_PACKAGES=$(
-  git diff ../README.md |
-  grep "^+|" |
-  cut -d'|' -f 2 |
-  grep -v -- "----" |
-  grep -v Name |
-  sed 's/^ *//;s/ *$//' |
-  head -c -1 |
-  tr '\n' ',' |
-  sed -e 's/,/, /g'
-)
-
-git config --global user.name ci
-git config --global user.email ci@example.com
-git add ../README.md
-git commit -m "update $IMAGE: $UPDATED_PACKAGES"

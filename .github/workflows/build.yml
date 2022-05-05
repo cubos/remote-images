@@ -21,12 +21,33 @@ jobs:
           - fedora
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Docker Build
         run: docker build . --tag test-image --pull
         working-directory: ${{ matrix.image }}
 
       - name: Update README.md (without git push)
+        working-directory: ${{ matrix.image }}
         run: |
           docker run -v $GITHUB_WORKSPACE:/work test-image bash -c "cd /work/${{ matrix.image }}; ./update-readme.sh"
+
+          [ -z "$(git diff ../README.md)" ] && exit
+
+          UPDATED_PACKAGES=$(
+            git diff ../README.md |
+            grep "^+|" |
+            cut -d'|' -f 2 |
+            grep -v -- "----" |
+            grep -v Name |
+            sed 's/^ *//;s/ *$//' |
+            head -c -1 |
+            tr '\n' ',' |
+            sed -e 's/,/, /g'
+          )
+
+          git config --global user.name ci
+          git config --global user.email ci@example.com
+          git add ../README.md
+          git commit -m "update $IMAGE: $UPDATED_PACKAGES"
+

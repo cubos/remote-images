@@ -16,7 +16,7 @@ jobs:
           - fedora
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
@@ -38,5 +38,26 @@ jobs:
       - name: Update README.md
         run: |
           git pull
+
           docker run -v $GITHUB_WORKSPACE:/work ghcr.io/cubos/remote-images-${{ matrix.image }}:$(cat tag) bash -c "cd /work/${{ matrix.image }}; ./update-readme.sh"
+
+          [ -z "$(git diff ../README.md)" ] && exit
+
+          UPDATED_PACKAGES=$(
+            git diff ../README.md |
+            grep "^+|" |
+            cut -d'|' -f 2 |
+            grep -v -- "----" |
+            grep -v Name |
+            sed 's/^ *//;s/ *$//' |
+            head -c -1 |
+            tr '\n' ',' |
+            sed -e 's/,/, /g'
+          )
+
+          git config --global user.name ci
+          git config --global user.email ci@example.com
+          git add ../README.md
+          git commit -m "update $IMAGE: $UPDATED_PACKAGES"
+
           git push origin main
