@@ -31,16 +31,3 @@ Based on Ubuntu 21.10, this image strives for having the latest stable version o
 | Wasmtime | 0.36.0 |
 
 <!-- END GENERATED SECTION: ubuntu -->
-
-## Fedora
-
-Based on Fedora 34, this image strives for having the latest stable version of the most commonly used software. It's sponsored by [Red Hat](https://www.redhat.com/) and has many similarities to RHEL.
-
-<!-- BEGIN GENERATED SECTION: fedora -->
-
-| Name | Version | Notes |
-| ---- | ------- | ----- |
-| Docker | 20.10.14 |
-| Git | 2.34.1 |
-
-<!-- END GENERATED SECTION: fedora -->
