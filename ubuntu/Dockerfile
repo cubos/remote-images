@@ -1,4 +1,4 @@
-FROM ubuntu:21.10
+FROM ubuntu:22.04
 
 LABEL org.opencontainers.image.title="Ubuntu"
 LABEL org.opencontainers.image.source="https://github.com/cubos/remote-images"
