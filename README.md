@@ -9,15 +9,15 @@ Based on Ubuntu 21.10, this image strives for having the latest stable version o
 | Name | Version | Notes |
 | ---- | ------- | ----- |
 | .NET SDK | 2.1.818<br>3.1.418<br>5.0.407<br>6.0.202 (default) |
-| AWS SDK | 2.6.2 |
+| AWS SDK | 2.6.3 |
 | Clang | 13.0.0 |
 | Crystal | 1.4.1 |
 | Dart | 2.16.2 |
-| Docker | 20.10.14 |
-| Docker Compose | 2.3.3 |
+| Docker | 20.10.15 |
+| Docker Compose | 2.5.0 |
 | Flutter | 2.10.5 |
 | GCC | 11.2.0 |
-| Git | 2.36.0 |
+| Git | 2.36.1 |
 | Go | 1.18.1 |
 | Google Cloud SDK | 384.0.1 |
 | kubectl | 1.23.6 |
