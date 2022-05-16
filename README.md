@@ -8,19 +8,19 @@ Based on Ubuntu 21.10, this image strives for having the latest stable version o
 
 | Name | Version | Notes |
 | ---- | ------- | ----- |
-| .NET SDK | 2.1.818<br>3.1.418<br>5.0.407<br>6.0.202 (default) |
-| AWS SDK | 2.6.3 |
+| .NET SDK | 2.1.818<br>3.1.419<br>5.0.408<br>6.0.300 (default) |
+| AWS SDK | 2.7.0 |
 | Clang | 13.0.0 |
 | Crystal | 1.4.1 |
-| Dart | 2.16.2 |
-| Docker | 20.10.15 |
+| Dart | 2.17.0 |
+| Docker | 20.10.16 |
 | Docker Compose | 2.5.0 |
-| Flutter | 2.10.5 |
+| Flutter | 3.0.0 |
 | GCC | 11.2.0 |
 | Git | 2.36.1 |
-| Go | 1.18.1 |
-| Google Cloud SDK | 384.0.1 |
-| kubectl | 1.23.6 |
+| Go | 1.18.2 |
+| Google Cloud SDK | 385.0.0 |
+| kubectl | 1.24.0 |
 | Node.js | 12.22.12<br>14.19.2<br>16.15.0 (default)<br>17.9.0<br>18.1.0 | Select with `nvm` |
 | PHP | 8.0.8 |
 | Python | 2.7.18<br>3.9.7 | Use `python` or `python3` |
