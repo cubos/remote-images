@@ -217,7 +217,7 @@ RUN \
   p7zip-full \
   perl \
   php-cli \
-  python \
+  python2 \
   python3 \
   python3-cryptography \
   python3-netifaces \
