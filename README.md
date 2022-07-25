@@ -8,26 +8,26 @@ Based on Ubuntu 22.04, this image strives for having the latest stable version o
 
 | Name | Version | Notes |
 | ---- | ------- | ----- |
-| .NET SDK | 2.1.818<br>3.1.418<br>5.0.407<br>6.0.202 (default) |
-| AWS SDK | 2.6.2 |
+| .NET SDK | 2.1.818<br>3.1.421<br>5.0.408<br>6.0.302 (default) |
+| AWS SDK | 2.7.16 |
 | Clang | 13.0.0 |
-| Crystal | 1.4.1 |
-| Dart | 2.16.2 |
-| Docker | 20.10.14 |
-| Docker Compose | 2.3.3 |
-| Flutter | 2.10.5 |
+| Crystal | 1.5.0 |
+| Dart | 2.17.6 |
+| Docker | 20.10.17 |
+| Docker Compose | 2.6.0 |
+| Flutter | 3.0.5 |
 | GCC | 11.2.0 |
-| Git | 2.36.0 |
-| Go | 1.18.1 |
-| Google Cloud SDK | 384.0.1 |
-| kubectl | 1.23.6 |
-| Node.js | 12.22.12<br>14.19.2<br>16.15.0 (default)<br>17.9.0<br>18.1.0 | Select with `nvm` |
+| Git | 2.37.1 |
+| Go | 1.18.4 |
+| Google Cloud SDK | 393.0.0 |
+| kubectl | 1.24.2 |
+| Node.js | 12.22.12<br>14.20.0<br>16.16.0 (default)<br>17.9.1<br>18.6.0 | Select with `nvm` |
 | PHP | 8.0.8 |
 | Python | 2.7.18<br>3.9.7 | Use `python` or `python3` |
 | Ruby | 2.7.4p191 |
-| Rust | 1.60.0 |
-| Terraform | 1.1.9 |
-| Wasmer | 2.2.1 |
-| Wasmtime | 0.36.0 |
+| Rust | 1.62.0 |
+| Terraform | 1.2.5 |
+| Wasmer | 2.3.0 |
+| Wasmtime | 0.38.1 |
 
 <!-- END GENERATED SECTION: ubuntu -->
