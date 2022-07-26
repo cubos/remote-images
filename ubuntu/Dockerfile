@@ -1,4 +1,4 @@
-FROM ubuntu:21.10
+FROM ubuntu:22.04
 
 LABEL org.opencontainers.image.title="Ubuntu"
 LABEL org.opencontainers.image.source="https://github.com/cubos/remote-images"
@@ -106,12 +106,26 @@ RUN \
 RUN curl -sSL https://aka.ms/vsls-linux-prereq-script | bash -
 
 # .NET
-RUN curl -sSLO https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb && \
+RUN curl -sSLO https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb && \
   dpkg -i packages-microsoft-prod.deb && \
   rm packages-microsoft-prod.deb
 
+# OpenSSL 1.1.1
+RUN curl -sSLO http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb && \
+  curl -sSLO http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl-dev_1.1.1f-1ubuntu2.16_amd64.deb && \
+  dpkg -i libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb libssl-dev_1.1.1f-1ubuntu2.16_amd64.deb && \
+  rm libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb libssl-dev_1.1.1f-1ubuntu2.16_amd64.deb
+
+# LTTng 2.0
+RUN curl -sSLO http://archive.ubuntu.com/ubuntu/pool/main/u/ust/liblttng-ust0_2.11.0-1_amd64.deb && \
+  curl -sSLO http://archive.ubuntu.com/ubuntu/pool/main/u/ust/liblttng-ust-ctl4_2.11.0-1_amd64.deb && \
+  curl -sSLO http://archive.ubuntu.com/ubuntu/pool/main/libu/liburcu/liburcu6_0.11.1-2_amd64.deb && \
+  apt-get install -y libnuma1 && \
+  dpkg -i liblttng-ust0_2.11.0-1_amd64.deb liblttng-ust-ctl4_2.11.0-1_amd64.deb liburcu6_0.11.1-2_amd64.deb && \
+  rm liblttng-ust0_2.11.0-1_amd64.deb liblttng-ust-ctl4_2.11.0-1_amd64.deb liburcu6_0.11.1-2_amd64.deb
+
 # LLVM and Clang
-RUN VERSION=13 && \
+RUN VERSION=14 && \
   apt-get install -y \
   clang-${VERSION} \
   lld-${VERSION} \
@@ -217,7 +231,7 @@ RUN \
   p7zip-full \
   perl \
   php-cli \
-  python \
+  python2 \
   python3 \
   python3-cryptography \
   python3-netifaces \
